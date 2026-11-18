@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    ==========================================================================
+    PAGE 8: ADMINISTRATOR PANEL (admin-dashboard.html)
+    Project: Local Nest - Integrated Homestay & Local Experience Booking Platform
+    Course: CSC 3215: Web Technologies (AIUB)
+    Description:
+    Implements the 3 core Administrator (System Manager) features:
+      10. User and Listing Verification (Review host listings, guide
+          certificates, and tour packages with preview modal and
+          Approve & Publish / Reject controls).
+      11. Booking Dispute Management (Select active disputes to inspect
+          complaint details and saved negotiation history, then record a
+          resolution for Traveler or Host/Guide).
+      12. Platform Commission Management (Set platform commission rate % and
+          view live automatic fee/net earnings calculation).
+    ==========================================================================
+  -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel — Localnest</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="admin-dashboard">
+
+  <div class="app-shell">
+    <!-- ======================================================================
+         1. DARK LEFT SIDEBAR NAVIGATION (Matches Admin Figma Design)
+         ====================================================================== -->
+    <aside class="sidebar sidebar-dark">
+      <div class="sidebar-brand">
+        <a href="index.html" class="brand-logo brand-logo-light">
+          <span class="brand-logo-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-9.5z"/>
+              <path d="M9 21V13h6v8"/>
+            </svg>
+          </span>
+          <span>localnest</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Admin Sidebar Navigation">
+        <a href="admin-dashboard.html" class="sidebar-link active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"/>
+            <rect x="14" y="3" width="7" height="7"/>
+            <rect x="14" y="14" width="7" height="7"/>
+            <rect x="3" y="14" width="7" height="7"/>
+          </svg>
+          <span>Dashboard</span>
+        </a>
+
+        <a href="#verificationsCard" class="sidebar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          <span>Verifications</span>
+        </a>
+
+        <a href="#disputesCard" class="sidebar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          <span>Disputes</span>
+        </a>
+
+        <a href="#commissionCard" class="sidebar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="19" y1="5" x2="5" y2="19"/>
+            <circle cx="6.5" cy="6.5" r="2.5"/>
+            <circle cx="17.5" cy="17.5" r="2.5"/>
+          </svg>
+          <span>Commission Settings</span>
+        </a>
+
+        <a href="profile-settings.html" class="sidebar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          <span>Profile Settings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="login.html" id="logoutBtn" class="sidebar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- ======================================================================
+         2. MAIN CONTENT AREA
+         ====================================================================== -->
+    <div class="main-wrapper">
+      <!-- Top Header Bar -->
+      <header class="topbar">
+        <div class="topbar-title">Dashboard</div>
+        <div class="topbar-user">
+          <span class="topbar-user-name">Rafid Tahasin</span>
+          <span class="badge badge-role">Role: Admin</span>
+          <div class="avatar-circle">RT</div>
+        </div>
+      </header>
+
+      <main class="dashboard-content">
+        <div class="page-header">
+          <h1 class="page-title">Admin Panel</h1>
+          <p class="page-subtitle">
+            Manage platform commission, review submissions, and resolve booking disputes.
+          </p>
+        </div>
+
+        <!-- ==================================================================
+             FEATURE 12: PLATFORM COMMISSION MANAGEMENT
+             Future PHP Note: Update the COMMISSION table with the new
+             commission_rate, effective_date, and updated_by_admin_user_id.
+             ================================================================== -->
+        <section id="commissionCard" class="card" aria-labelledby="commissionHeading">
+          <div class="card-header">
+            <div>
+              <h2 id="commissionHeading" class="card-title">Platform Commission Management</h2>
+              <p class="card-subtitle">
+                Set the percentage deducted from each booking before host or guide earnings are paid.
+              </p>
+            </div>
+          </div>
+
+          <form id="commissionForm" class="commission-grid" novalidate>
+            <div>
+              <label for="commissionRateInput" class="form-label">Platform Commission Rate (%)</label>
+              <div class="commission-input-group">
+                <input
+                  type="number"
+                  id="commissionRateInput"
+                  class="form-control"
+                  value="10"
+                  min="0"
+                  max="50"
+                  step="0.5"
+                  required
+                />
+                <button type="submit" class="btn btn-primary">Update Rate</button>
+              </div>
+            </div>
+
+            <div class="commission-preview-box">
+              <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 4px;">
+                Automatic calculation preview
+              </div>
+              <div id="commissionPreviewText" style="font-size: 0.85rem; font-weight: 700; color: var(--text-main);">
+                Example &#2547;200 Booking &rarr; Platform Fee: &#2547;20 | Host/Guide Net Earnings: &#2547;180
+              </div>
+            </div>
+          </form>
+
+          <p id="currentRateCaption" class="form-hint" style="margin-top: 10px;">
+            Current rate: 10% &middot; Applied to new bookings after the rate is updated.
+          </p>
+        </section>
+
+        <!-- ==================================================================
+             FEATURE 10: USER & LISTING VERIFICATION
+             Future PHP Note: Update status ('Approved' or 'Rejected') in the
+             HOMESTAY, GUIDE_PORTFOLIO, or TOUR_PACKAGE database tables.
+             ================================================================== -->
+        <section id="verificationsCard" class="card" aria-labelledby="verificationsHeading">
+          <div class="card-header">
+            <div>
+              <h2 id="verificationsHeading" class="card-title">User &amp; Listing Verification</h2>
+              <p class="card-subtitle">
+                Review documents and photos before approving submissions for publication.
+              </p>
+            </div>
+            <span id="pendingVerificationsCount" class="card-meta-right">3 pending submissions</span>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Submission Type</th>
+                  <th>Submitted By</th>
+                  <th>Document/Photo Preview Link</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="verificationsTableBody">
+                <!-- Submission 1 -->
+                <tr>
+                  <td>
+                    <span class="cell-primary">Host Listing</span>
+                    <span class="cell-secondary">Srimangal Green Homestay</span>
+                  </td>
+                  <td>
+                    <span class="cell-primary">Meherunnissa Ponni</span>
+                    <span class="cell-secondary">Oct 23, 2026</span>
+                  </td>
+                  <td>
+                    <a
+                      href="#"
+                      class="preview-doc-link"
+                      data-doc-title="Srimangal Green Homestay — Listing Photos"
+                      data-doc-meta="Submitted by Meherunnissa Ponni · 6 high-resolution JPG photos verified for property authenticity in Srimangal, Sylhet."
+                      style="text-decoration: underline; font-weight: 600;"
+                    >View listing photos</a>
+                    <span class="cell-secondary">6 photos &middot; JPG</span>
+                  </td>
+                  <td class="verification-status-cell">
+                    <span class="badge badge-pending">Pending</span>
+                  </td>
+                  <td>
+                    <div class="action-btns">
+                      <button type="button" class="btn btn-accept btn-verify-approve">Approve &amp; Publish</button>
+                      <button type="button" class="btn btn-reject btn-verify-reject">Reject</button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Submission 2 -->
+                <tr>
+                  <td>
+                    <span class="cell-primary">Guide Certificate</span>
+                    <span class="cell-secondary">Tourism certification</span>
+                  </td>
+                  <td>
+                    <span class="cell-primary">Jemam Bin Islam</span>
+                    <span class="cell-secondary">Oct 23, 2026</span>
+                  </td>
+                  <td>
+                    <a
+                      href="#"
+                      class="preview-doc-link"
+                      data-doc-title="Jemam Bin Islam — Bangladesh Tourism Board License"
+                      data-doc-meta="File: tourism-certificate.pdf · Issued by Bangladesh Parjatan Corporation (Valid through 2028)."
+                      style="text-decoration: underline; font-weight: 600;"
+                    >View certificate</a>
+                    <span class="cell-secondary">tourism-certificate.pdf</span>
+                  </td>
+                  <td class="verification-status-cell">
+                    <span class="badge badge-pending">Pending</span>
+                  </td>
+                  <td>
+                    <div class="action-btns">
+                      <button type="button" class="btn btn-accept btn-verify-approve">Approve &amp; Publish</button>
+                      <button type="button" class="btn btn-reject btn-verify-reject">Reject</button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Submission 3 -->
+                <tr>
+                  <td>
+                    <span class="cell-primary">Tour Package</span>
+                    <span class="cell-secondary">Ratargul &amp; Bisnakandi Boat Tour</span>
+                  </td>
+                  <td>
+                    <span class="cell-primary">Mahmudul Hasan</span>
+                    <span class="cell-secondary">Oct 22, 2026</span>
+                  </td>
+                  <td>
+                    <a
+                      href="#"
+                      class="preview-doc-link"
+                      data-doc-title="Ratargul & Bisnakandi Boat Tour — Tour Package Dossier"
+                      data-doc-meta="Submitted by Mahmudul Hasan · Includes 1 safety & itinerary PDF + 4 verified Sylhet destination photos."
+                      style="text-decoration: underline; font-weight: 600;"
+                    >View itinerary &amp; photos</a>
+                    <span class="cell-secondary">1 PDF &middot; 4 photos</span>
+                  </td>
+                  <td class="verification-status-cell">
+                    <span class="badge badge-pending">Pending</span>
+                  </td>
+                  <td>
+                    <div class="action-btns">
+                      <button type="button" class="btn btn-accept btn-verify-approve">Approve &amp; Publish</button>
+                      <button type="button" class="btn btn-reject btn-verify-reject">Reject</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             FEATURE 11: BOOKING DISPUTE MANAGEMENT
+             Future PHP Note: Fetch COMPLAINT, BOOKING, and MESSAGE records by
+             booking_id and update COMPLAINT.status and COMPLAINT.resolution.
+             ================================================================== -->
+        <section id="disputesCard" class="card" aria-labelledby="disputesHeading">
+          <div class="card-header">
+            <div>
+              <h2 id="disputesHeading" class="card-title">Booking Dispute Management</h2>
+              <p class="card-subtitle">
+                Review the complaint and saved negotiation history before choosing a resolution.
+              </p>
+            </div>
+            <span id="activeDisputesCounter" class="card-meta-right">3 active disputes</span>
+          </div>
+
+          <div class="dispute-split-grid">
+            <!-- Left Column: Active Disputes Table -->
+            <div>
+              <h3 style="font-size: 0.825rem; font-weight: 700; margin-bottom: 10px;">
+                Active disputes
+              </h3>
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Dispute ID</th>
+                      <th>Booking ID</th>
+                      <th>Involved Parties</th>
+                      <th>Complaint Reason</th>
+                    </tr>
+                  </thead>
+                  <tbody id="disputesTableBody">
+                    <!-- Dispute 1 (Selected by default) -->
+                    <tr class="row-clickable row-selected" data-dispute-id="DSP-1042" style="border-left: 3px solid var(--primary);">
+                      <td>
+                        <span class="cell-primary" style="color: var(--primary);">DSP-1042</span>
+                        <span class="cell-secondary dispute-selected-tag" style="color: var(--primary);">Selected</span>
+                      </td>
+                      <td>BK-2081</td>
+                      <td>
+                        <span class="cell-primary">Tanvir Ahmed</span>
+                        <span class="cell-secondary">Meherunnissa Ponni &middot; Host</span>
+                      </td>
+                      <td>Airport pickup not provided</td>
+                    </tr>
+
+                    <!-- Dispute 2 -->
+                    <tr class="row-clickable" data-dispute-id="DSP-1041">
+                      <td>
+                        <span class="cell-primary">DSP-1041</span>
+                        <span class="cell-secondary dispute-selected-tag"></span>
+                      </td>
+                      <td>BK-2074</td>
+                      <td>
+                        <span class="cell-primary">Nusrat Jahan</span>
+                        <span class="cell-secondary">Jemam Bin Islam &middot; Guide</span>
+                      </td>
+                      <td>Tour itinerary changed</td>
+                    </tr>
+
+                    <!-- Dispute 3 -->
+                    <tr class="row-clickable" data-dispute-id="DSP-1039">
+                      <td>
+                        <span class="cell-primary">DSP-1039</span>
+                        <span class="cell-secondary dispute-selected-tag"></span>
+                      </td>
+                      <td>BK-2068</td>
+                      <td>
+                        <span class="cell-primary">Tasnim Zara</span>
+                        <span class="cell-secondary">Mahmudul Hasan &middot; Guide</span>
+                      </td>
+                      <td>Cancellation fee questioned</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <p id="disputeTableFootnote" class="form-hint" style="margin-top: 12px;">
+                The selected dispute's booking details and saved conversation are shown alongside this table. No resolution has been recorded.
+              </p>
+            </div>
+
+            <!-- Right Column: Selected Dispute Details & Resolution Panel -->
+            <div class="dispute-detail-card">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+                <h3 id="detailDisputeId" style="font-size: 0.95rem; font-weight: 800;">DSP-1042</h3>
+                <span id="detailDisputeStatusBadge" class="badge badge-info">Under review</span>
+              </div>
+
+              <div id="detailBookingTitle" style="font-size: 0.8125rem; font-weight: 700; color: var(--primary); margin-bottom: 3px;">
+                BK-2081 &middot; Srimangal Green Homestay
+              </div>
+              <div id="detailBookingMeta" style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 2px;">
+                Oct 20&ndash;22, 2026 &middot; Booking total: &#2547;200.00
+              </div>
+              <div id="detailParties" style="font-size: 0.78rem; color: var(--text-secondary);">
+                Tanvir Ahmed (Traveler) &middot; Meherunnissa Ponni (Host)
+              </div>
+
+              <!-- Complaint Reason Box -->
+              <div class="complaint-box">
+                <div style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 2px;">
+                  Complaint reason
+                </div>
+                <div id="detailComplaintTitle" style="font-size: 0.8125rem; font-weight: 700; margin-bottom: 4px;">
+                  Airport pickup not provided
+                </div>
+                <p id="detailComplaintDesc" style="font-size: 0.78rem; color: var(--text-secondary);">
+                  Traveler requests &#2547;25 for a taxi. Host is reviewing the updated arrival time and driver records.
+                </p>
+              </div>
+
+              <!-- Saved Negotiation Conversation Header -->
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                <span style="font-size: 0.78rem; font-weight: 700;">Saved negotiation conversation</span>
+                <span id="detailMsgCount" class="card-meta-right">4 messages</span>
+              </div>
+
+              <!-- Saved Messages Scrollable Box -->
+              <div id="detailMessagesBox" class="saved-conv-box">
+                <div class="saved-msg-item">
+                  <div style="font-weight: 700;">Tanvir Ahmed &middot; Traveler</div>
+                  <div style="font-size: 0.7rem; color: var(--text-muted); margin-bottom: 4px;">Oct 22 &middot; 09:15</div>
+                  <div>Our &#2547;200 booking included airport pickup, but no driver arrived. We paid &#2547;25 for a taxi. Could you reimburse that cost?</div>
+                </div>
+
+                <div class="saved-msg-item">
+                  <div style="font-weight: 700;">Meherunnissa Ponni &middot; Host</div>
+                  <div style="font-size: 0.7rem; color: var(--text-muted); margin-bottom: 4px;">Oct 22 &middot; 10:02</div>
+                  <div>I arranged a driver for 14:00. The flight arrived later than the time shared. Please send your arrival time and taxi receipt so we can review.</div>
+                </div>
+
+                <div class="saved-msg-item">
+                  <div style="font-weight: 700;">Tanvir Ahmed &middot; Traveler</div>
+                  <div style="font-size: 0.7rem; color: var(--text-muted); margin-bottom: 4px;">Oct 22 &middot; 10:18</div>
+                  <div>Attached flight delay notice and &#2547;25 airport taxi receipt for review.</div>
+                </div>
+
+                <div class="saved-msg-item">
+                  <div style="font-weight: 700;">Meherunnissa Ponni &middot; Host</div>
+                  <div style="font-size: 0.7rem; color: var(--text-muted); margin-bottom: 4px;">Oct 22 &middot; 10:40</div>
+                  <div>Thank you, I have asked Admin support to help mediate the airport transfer fee.</div>
+                </div>
+              </div>
+
+              <div style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 12px;">
+                &#8964; More saved messages below &middot; Read-only history
+              </div>
+
+              <!-- Dispute Resolution Action Buttons -->
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <button type="button" id="resolveTravelerBtn" class="btn btn-outline-primary btn-block">
+                  Resolve for Traveler (Refund)
+                </button>
+                <button type="button" id="resolveHostBtn" class="btn btn-outline-primary btn-block">
+                  Resolve for Host/Guide (Payout)
+                </button>
+              </div>
+
+              <p id="disputeResolutionNote" class="form-hint" style="margin-top: 10px;">
+                Review both parties' evidence before recording a final decision.
+              </p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Document / Photo Preview Modal for Verification Table -->
+  <div id="docPreviewModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="docModalTitle">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="docModalTitle" class="card-title">Submission Preview</h3>
+        <button type="button" id="closeDocModal" class="modal-close" aria-label="Close modal">&times;</button>
+      </div>
+      <p id="docModalMeta" class="card-subtitle" style="margin-bottom: 16px;"></p>
+      <div style="background-color: var(--bg-page); border: 1px dashed var(--border-strong); border-radius: var(--radius-md); padding: 28px; text-align: center; color: var(--text-secondary); font-size: 0.825rem; margin-bottom: 18px;">
+        Verified submission files are attached and ready for administrator inspection.
+      </div>
+      <div style="display: flex; justify-content: flex-end;">
+        <button type="button" id="docModalCloseBtn" class="btn btn-primary">Done Reviewing</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    ==========================================================================
+    PAGE 7: LOCAL TOUR GUIDE DASHBOARD (guide-dashboard.html)
+    Project: Local Nest - Integrated Homestay & Local Experience Booking Platform
+    Course: CSC 3215: Web Technologies (AIUB)
+    Description:
+    Implements the 3 core Local Tour Guide features from the proposal:
+      7. Custom Tour Bidding (Select open traveler tour requests and submit
+         personalized price offers and tailored itineraries).
+      8. Tour Progress Tracker (Update assigned tour statuses between
+         Scheduled, In Progress, and Completed).
+      9. Guide Portfolio and Verification (Update guiding experience, upload
+         tour photos and tourism certificates for Admin review).
+    ==========================================================================
+  -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Local Tour Guide Dashboard — Localnest</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="guide-dashboard">
+
+  <div class="app-shell">
+    <!-- ======================================================================
+         1. LEFT SIDEBAR NAVIGATION
+         ====================================================================== -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <a href="index.html" class="brand-logo">
+          <span class="brand-logo-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-9.5z"/>
+              <path d="M9 21V13h6v8"/>
+            </svg>
+          </span>
+          <span>localnest</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Guide Sidebar Navigation">
+        <a href="guide-dashboard.html" class="sidebar-link active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"/>
+            <rect x="14" y="3" width="7" height="7"/>
+            <rect x="14" y="14" width="7" height="7"/>
+            <rect x="3" y="14" width="7" height="7"/>
+          </svg>
+          <span>Dashboard</span>
+        </a>
+
+        <a href="#customTourBiddingCard" class="sidebar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+          </svg>
+          <span>Custom Tour Bids</span>
+        </a>
+
+        <a href="#tourProgressCard" class="sidebar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+          </svg>
+          <span>Active Tours</span>
+        </a>
+
+        <a href="#guidePortfolioCard" class="sidebar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          <span>Portfolio &amp; Verification</span>
+        </a>
+
+        <a href="profile-settings.html" class="sidebar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+          <span>Profile Settings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="login.html" id="logoutBtn" class="sidebar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- ======================================================================
+         2. MAIN CONTENT AREA
+         ====================================================================== -->
+    <div class="main-wrapper">
+      <!-- Top Header Bar -->
+      <header class="topbar">
+        <div class="topbar-title">Dashboard</div>
+        <div class="topbar-user">
+          <span class="topbar-user-name">Jemam Bin Islam</span>
+          <span class="badge badge-role">Role: Local Tour Guide</span>
+          <div class="avatar-circle">JI</div>
+        </div>
+      </header>
+
+      <main class="dashboard-content">
+        <div class="page-header">
+          <h1 class="page-title">Local Tour Guide Dashboard</h1>
+          <p class="page-subtitle">
+            Welcome back, Jemam. Send personalized offers, manage your tours, and keep your portfolio up to date.
+          </p>
+        </div>
+
+        <!-- ==================================================================
+             FEATURE 7: CUSTOM TOUR BIDDING (FULL-WIDTH CARD)
+             Future PHP Note: Insert submitted bids into the TOUR_REQUEST / BID
+             table with guide_user_id, offer_price, and proposed_itinerary.
+             ================================================================== -->
+        <section id="customTourBiddingCard" class="card" aria-labelledby="customBiddingHeading">
+          <div class="card-header">
+            <div>
+              <h2 id="customBiddingHeading" class="card-title">Custom Tour Bidding</h2>
+              <p class="card-subtitle">
+                Select an open traveler request and send a tailored itinerary and price.
+              </p>
+            </div>
+            <span id="openRequestsCounter" class="card-meta-right">3 open requests</span>
+          </div>
+
+          <!-- Open Requests Table -->
+          <div class="table-responsive" style="margin-bottom: 20px;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Traveler Name</th>
+                  <th>Destination</th>
+                  <th>Preferred Date</th>
+                  <th>Group Size</th>
+                  <th class="text-right">Traveler Budget</th>
+                </tr>
+              </thead>
+              <tbody id="tourBidRequestsBody">
+                <!-- Request 1 (Selected by default) -->
+                <tr
+                  class="row-clickable row-selected"
+                  data-traveler="Tasnim Zara"
+                  data-destination="Srimangal, Sylhet"
+                  data-date="Oct 28, 2026"
+                  data-group="4 travelers"
+                  data-price="180.00"
+                  data-itinerary="8:00 AM hotel pickup in Srimangal. Guided Lawachara National Park trail walk, a visit to Madhabpur Lake & Finlay Tea Estate, and traditional lunch at a local restaurant. Return by 3:00 PM.&#10;&#10;Includes private Chander Gari transport, guiding, and entry fees for 4 travelers. Lunch is paid separately."
+                >
+                  <td>
+                    <label style="display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-weight: 700; color: var(--primary);">
+                      <input type="radio" name="selectedTourRequest" checked />
+                      <span class="traveler-name-span">Tasnim Zara</span>
+                    </label>
+                  </td>
+                  <td>Srimangal, Sylhet</td>
+                  <td>Oct 28, 2026</td>
+                  <td>4 travelers</td>
+                  <td class="text-right" style="font-weight: 700;">&#2547;200.00</td>
+                </tr>
+
+                <!-- Request 2 -->
+                <tr
+                  class="row-clickable"
+                  data-traveler="Tanvir Ahmed"
+                  data-destination="Inani Beach, Cox's Bazar"
+                  data-date="Oct 30, 2026"
+                  data-group="2 travelers"
+                  data-price="135.00"
+                  data-itinerary="2:00 PM hotel pickup in Cox's Bazar. Scenic Marine Drive tour to Himchari Waterfall and Inani Coral Beach, sunset photography stop, and fresh seafood dinner by the beach. Return by 8:30 PM."
+                >
+                  <td>
+                    <label style="display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-weight: 600;">
+                      <input type="radio" name="selectedTourRequest" />
+                      <span class="traveler-name-span">Tanvir Ahmed</span>
+                    </label>
+                  </td>
+                  <td>Inani Beach, Cox's Bazar</td>
+                  <td>Oct 30, 2026</td>
+                  <td>2 travelers</td>
+                  <td class="text-right" style="font-weight: 700;">&#2547;150.00</td>
+                </tr>
+
+                <!-- Request 3 -->
+                <tr
+                  class="row-clickable"
+                  data-traveler="Nusrat Jahan"
+                  data-destination="Sajek Valley, Rangamati"
+                  data-date="Nov 2, 2026"
+                  data-group="6 travelers"
+                  data-price="275.00"
+                  data-itinerary="5:00 AM private Chander Gari pickup for 6 travelers from Khagrachari. Konglak Para sunrise viewpoint, Ruilui Para heritage walk, and Hazachora Waterfall visit. Return by 2:30 PM."
+                >
+                  <td>
+                    <label style="display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-weight: 600;">
+                      <input type="radio" name="selectedTourRequest" />
+                      <span class="traveler-name-span">Nusrat Jahan</span>
+                    </label>
+                  </td>
+                  <td>Sajek Valley, Rangamati</td>
+                  <td>Nov 2, 2026</td>
+                  <td>6 travelers</td>
+                  <td class="text-right" style="font-weight: 700;">&#2547;300.00</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Submit Personalized Offer Form -->
+          <div>
+            <div style="display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 14px;">
+              <h3 style="font-size: 0.9rem; font-weight: 700;">Submit Personalized Offer</h3>
+              <span id="bidTargetSummary" style="font-size: 0.78rem; color: var(--text-muted);">
+                For Tasnim Zara &middot; Srimangal, Sylhet &middot; Oct 28, 2026 &middot; 4 travelers
+              </span>
+            </div>
+
+            <form id="submitTourBidForm" style="display: grid; grid-template-columns: 270px 1fr; gap: 20px; align-items: start;" novalidate>
+              <div>
+                <div class="form-group" style="margin-bottom: 6px;">
+                  <label for="bidProposedPrice" class="form-label">Proposed Price (&#2547;)</label>
+                  <input
+                    type="number"
+                    id="bidProposedPrice"
+                    class="form-control"
+                    value="180.00"
+                    min="10"
+                    step="5"
+                    required
+                  />
+                </div>
+                <span id="bidGroupHelperText" class="form-hint" style="margin-bottom: 14px;">
+                  Total for all 4 travelers &middot; BDT (&#2547;)
+                </span>
+                <button type="submit" class="btn btn-primary">Send Bid</button>
+              </div>
+
+              <div>
+                <label for="bidProposedItinerary" class="form-label">Proposed Itinerary &amp; Activity Details</label>
+                <textarea id="bidProposedItinerary" class="form-control" style="min-height: 112px;" required>8:00 AM hotel pickup in Srimangal. Guided Lawachara National Park trail walk, a visit to Madhabpur Lake &amp; Finlay Tea Estate, and traditional lunch at a local restaurant. Return by 3:00 PM.
+
+Includes private Chander Gari transport, guiding, and entry fees for 4 travelers. Lunch is paid separately.</textarea>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             BOTTOM TWO-COLUMN GRID:
+             LEFT: FEATURE 8 — TOUR PROGRESS TRACKER
+             RIGHT: FEATURE 9 — GUIDE PORTFOLIO & VERIFICATION
+             ================================================================== -->
+        <div class="grid-2-col">
+
+          <!-- FEATURE 8: TOUR PROGRESS TRACKER -->
+          <section id="tourProgressCard" class="card" aria-labelledby="tourProgressHeading">
+            <div class="card-header">
+              <div>
+                <h2 id="tourProgressHeading" class="card-title">Tour Progress Tracker</h2>
+                <p class="card-subtitle">Keep travelers informed as each assigned tour progresses.</p>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Tour Title</th>
+                    <th>Traveler Name</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="tourProgressTableBody">
+                  <!-- Tour 1 -->
+                  <tr>
+                    <td style="font-weight: 700;">Lawachara Rainforest Trail</td>
+                    <td>MD. Akimul Islam</td>
+                    <td>Oct 25, 2026</td>
+                    <td>
+                      <div class="action-btns">
+                        <select class="form-control tour-status-select" style="padding: 5px 8px; font-size: 0.78rem; width: 120px;">
+                          <option value="Scheduled" selected>Scheduled</option>
+                          <option value="In Progress">In Progress</option>
+                          <option value="Completed">Completed</option>
+                        </select>
+                        <button type="button" class="btn btn-update btn-save-tour-status">Update</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Tour 2 -->
+                  <tr>
+                    <td style="font-weight: 700;">Ratargul &amp; Bisnakandi Boat Tour</td>
+                    <td>Farhan Sadik</td>
+                    <td>Oct 23, 2026</td>
+                    <td>
+                      <div class="action-btns">
+                        <select class="form-control tour-status-select" style="padding: 5px 8px; font-size: 0.78rem; width: 120px;">
+                          <option value="Scheduled">Scheduled</option>
+                          <option value="In Progress" selected>In Progress</option>
+                          <option value="Completed">Completed</option>
+                        </select>
+                        <button type="button" class="btn btn-update btn-save-tour-status">Update</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Tour 3 -->
+                  <tr>
+                    <td style="font-weight: 700;">Sylheti Seven-Layer Tea &amp; Food Tour</td>
+                    <td>Sadia Afrin</td>
+                    <td>Oct 21, 2026</td>
+                    <td>
+                      <div class="action-btns">
+                        <select class="form-control tour-status-select" style="padding: 5px 8px; font-size: 0.78rem; width: 120px;">
+                          <option value="Scheduled">Scheduled</option>
+                          <option value="In Progress">In Progress</option>
+                          <option value="Completed" selected>Completed</option>
+                        </select>
+                        <button type="button" class="btn btn-update btn-save-tour-status">Update</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p class="form-hint" style="margin-top: 16px;">
+              Status options: Scheduled, In Progress, Completed.
+            </p>
+            <p id="tourProgressFeedback" class="form-hint">
+              Choose a status, then select Update to save that tour's progress.
+            </p>
+          </section>
+
+          <!-- FEATURE 9: GUIDE PORTFOLIO & VERIFICATION -->
+          <section id="guidePortfolioCard" class="card" aria-labelledby="guidePortfolioHeading">
+            <div class="card-header" style="margin-bottom: 10px;">
+              <div>
+                <h2 id="guidePortfolioHeading" class="card-title">Guide Portfolio &amp; Verification</h2>
+              </div>
+            </div>
+
+            <!-- Verification Status Line -->
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
+              <span id="guideVerificationBadge" class="badge badge-verified-green">Verified</span>
+              <span id="guideVerificationText" style="font-size: 0.78rem; color: var(--text-muted);">
+                Your guide profile is approved.
+              </span>
+            </div>
+
+            <form id="guidePortfolioForm" novalidate>
+              <div class="form-group">
+                <label for="guideExperienceInput" class="form-label">Previous Guiding Experience</label>
+                <textarea id="guideExperienceInput" class="form-control" style="min-height: 82px;" required>Local guide in Sylhet &amp; Chattogram Hill Tracts since 2019. I lead rainforest walks, tea estate tours, and heritage food trails across Bangladesh, guiding in Bangla and English.</textarea>
+              </div>
+
+              <!-- Upload Tour Photos -->
+              <div class="form-group">
+                <label class="form-label">Upload Tour Photos</label>
+                <div class="file-input-box">
+                  <label for="tourPhotosInput" class="file-input-btn">Choose files</label>
+                  <input
+                    type="file"
+                    id="tourPhotosInput"
+                    accept="image/jpeg,image/png"
+                    multiple
+                    style="display: none;"
+                  />
+                  <span id="tourPhotosFileName" class="file-input-name">3 files selected</span>
+                </div>
+              </div>
+
+              <!-- Upload Tourism Certificate -->
+              <div class="form-group" style="margin-bottom: 6px;">
+                <label class="form-label">Upload Tourism Certificate (PDF/JPG)</label>
+                <div class="file-input-box">
+                  <label for="tourismCertInput" class="file-input-btn">Choose file</label>
+                  <input
+                    type="file"
+                    id="tourismCertInput"
+                    accept=".pdf,image/jpeg,image/png"
+                    style="display: none;"
+                  />
+                  <span id="tourismCertFileName" class="file-input-name">tourism-certificate.pdf</span>
+                </div>
+              </div>
+
+              <span class="form-hint" style="margin-bottom: 16px;">
+                Photos: JPG/PNG. Certificate: PDF/JPG. Max 5 MB per file.
+              </span>
+
+              <button type="submit" class="btn btn-primary">Submit to Admin</button>
+              <span id="portfolioSubmitHint" class="form-hint" style="margin-top: 8px;">
+                Portfolio changes will be sent to the admin for review.
+              </span>
+            </form>
+          </section>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

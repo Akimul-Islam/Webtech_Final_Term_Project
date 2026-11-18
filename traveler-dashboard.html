@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    ==========================================================================
+    PAGE 5: TRAVELER (GUEST) DASHBOARD (traveler-dashboard.html)
+    Project: Local Nest - Integrated Homestay & Local Experience Booking Platform
+    Course: CSC 3215: Web Technologies (AIUB)
+    Description:
+    Implements the 3 core Traveler (Guest) features from the project proposal:
+      1. Smart Itinerary Builder (JavaScript DOM manipulation to add/remove
+         homestays and tours organized by trip day).
+      2. AJAX Booking Negotiation (Asynchronous messaging and price offer
+         system with hosts and guides without reloading the page).
+      3. Split Cost Calculator (Automatically totals homestays + tours and
+         calculates per-person cost based on number of participants).
+    ==========================================================================
+  -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Traveler Dashboard — Localnest</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="traveler-dashboard">
+
+  <div class="app-shell">
+    <!-- ======================================================================
+         1. LEFT SIDEBAR NAVIGATION
+         ====================================================================== -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <a href="index.html" class="brand-logo">
+          <span class="brand-logo-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-9.5z"/>
+              <path d="M9 21V13h6v8"/>
+            </svg>
+          </span>
+          <span>localnest</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Traveler Sidebar Navigation">
+        <a href="traveler-dashboard.html" class="sidebar-link active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"/>
+            <rect x="14" y="3" width="7" height="7"/>
+            <rect x="14" y="14" width="7" height="7"/>
+            <rect x="3" y="14" width="7" height="7"/>
+          </svg>
+          <span>Dashboard</span>
+        </a>
+
+        <a href="index.html#featuredSection" class="sidebar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+          </svg>
+          <span>Browse Stays/Tours</span>
+        </a>
+
+        <a href="#itineraryBuilderCard" class="sidebar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+          <span>My Itinerary</span>
+        </a>
+
+        <a href="#ajaxNegotiationCard" class="sidebar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          <span>Messages</span>
+        </a>
+
+        <a href="profile-settings.html" class="sidebar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+          <span>Profile Settings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="login.html" id="logoutBtn" class="sidebar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- ======================================================================
+         2. MAIN CONTENT AREA
+         ====================================================================== -->
+    <div class="main-wrapper">
+      <!-- Top Header Bar -->
+      <header class="topbar">
+        <div class="topbar-title">Dashboard</div>
+        <div class="topbar-user">
+          <span class="topbar-user-name">MD. Akimul Islam</span>
+          <span class="badge badge-role">Role: Traveler</span>
+          <div class="avatar-circle">AI</div>
+        </div>
+      </header>
+
+      <main class="dashboard-content">
+        <div class="page-header">
+          <h1 class="page-title">Traveler Dashboard</h1>
+          <p class="page-subtitle">
+            Plan your itinerary, split trip costs, and connect with local hosts and guides.
+          </p>
+        </div>
+
+        <!-- ==================================================================
+             TOP ROW: SMART ITINERARY BUILDER (LEFT) & SPLIT COST CALCULATOR (RIGHT)
+             ================================================================== -->
+        <div class="grid-traveler-top">
+
+          <!-- FEATURE 1: SMART ITINERARY BUILDER -->
+          <section id="itineraryBuilderCard" class="card" aria-labelledby="itineraryHeading">
+            <div class="card-header">
+              <div>
+                <h2 id="itineraryHeading" class="card-title">Smart Itinerary Builder</h2>
+                <p id="itinerarySummarySubtitle" class="card-subtitle">
+                  Your Sylhet getaway &middot; 3 days, 4 saved experiences.
+                </p>
+              </div>
+            </div>
+
+            <!-- Add to Itinerary Controls -->
+            <form id="addItineraryForm" class="itinerary-controls" novalidate>
+              <div>
+                <label for="savedListingSelect" class="form-label">Saved destination / listing</label>
+                <select id="savedListingSelect" class="form-control">
+                  <option value="Sylhet · Jaflong & Dawki River Tour|Tour|Evening · group price|90">
+                    Sylhet &middot; Jaflong &amp; Dawki River Tour
+                  </option>
+                  <option value="Srimangal Tea Garden Cottage|Homestay|2 nights · entire stay|130">
+                    Srimangal Tea Garden Cottage (&#2547;130)
+                  </option>
+                  <option value="Nilgiri & Chimbuk Hill Sunrise Trek|Tour|Morning · group price|100">
+                    Nilgiri &amp; Chimbuk Hill Sunrise Trek (&#2547;100)
+                  </option>
+                  <option value="Sajek Cloud View Eco Stay|Homestay|2 nights · entire stay|96">
+                    Sajek Cloud View Eco Stay (&#2547;96)
+                  </option>
+                </select>
+              </div>
+
+              <div>
+                <label for="itineraryDayInput" class="form-label">Day #</label>
+                <input
+                  type="number"
+                  id="itineraryDayInput"
+                  class="form-control"
+                  value="3"
+                  min="1"
+                  max="14"
+                  required
+                />
+              </div>
+
+              <button type="submit" class="btn btn-primary">+ Add to Itinerary</button>
+            </form>
+
+            <!-- Dynamic Timeline List (Manipulated via JavaScript DOM methods) -->
+            <div id="itineraryTimeline" class="itinerary-timeline">
+              <!-- Item 1 -->
+              <div class="itinerary-item" data-day="1" data-type="Homestay" data-price="240">
+                <span class="day-pill">Day 1</span>
+                <div>
+                  <div class="itinerary-info-title">Srimangal Green Homestay</div>
+                  <div class="itinerary-info-meta">
+                    <span class="badge badge-info">Homestay</span>
+                    <span>2 nights &middot; entire stay</span>
+                  </div>
+                </div>
+                <div class="itinerary-price">&#2547;240.00</div>
+                <button type="button" class="btn btn-remove btn-remove-itinerary">Remove</button>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="itinerary-item" data-day="2" data-type="Tour" data-price="120">
+                <span class="day-pill">Day 2</span>
+                <div>
+                  <div class="itinerary-info-title">Lawachara Rainforest Trail</div>
+                  <div class="itinerary-info-meta">
+                    <span class="badge badge-neutral">Tour</span>
+                    <span>Half day &middot; group price</span>
+                  </div>
+                </div>
+                <div class="itinerary-price">&#2547;120.00</div>
+                <button type="button" class="btn btn-remove btn-remove-itinerary">Remove</button>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="itinerary-item" data-day="3" data-type="Homestay" data-price="160">
+                <span class="day-pill">Day 3</span>
+                <div>
+                  <div class="itinerary-info-title">Surma Riverside Guesthouse</div>
+                  <div class="itinerary-info-meta">
+                    <span class="badge badge-info">Homestay</span>
+                    <span>1 night &middot; entire stay</span>
+                  </div>
+                </div>
+                <div class="itinerary-price">&#2547;160.00</div>
+                <button type="button" class="btn btn-remove btn-remove-itinerary">Remove</button>
+              </div>
+
+              <!-- Item 4 -->
+              <div class="itinerary-item" data-day="3" data-type="Tour" data-price="80">
+                <span class="day-pill">Day 3</span>
+                <div>
+                  <div class="itinerary-info-title">Sylheti Seven-Layer Tea &amp; Food Tour</div>
+                  <div class="itinerary-info-meta">
+                    <span class="badge badge-neutral">Tour</span>
+                    <span>Evening &middot; group price</span>
+                  </div>
+                </div>
+                <div class="itinerary-price">&#2547;80.00</div>
+                <button type="button" class="btn btn-remove btn-remove-itinerary">Remove</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- FEATURE 3: SPLIT COST CALCULATOR -->
+          <section class="card" aria-labelledby="splitCostHeading">
+            <div class="card-header">
+              <div>
+                <h2 id="splitCostHeading" class="card-title">Split Cost Calculator</h2>
+                <p class="card-subtitle">Share the cost of your selected itinerary.</p>
+              </div>
+            </div>
+
+            <!-- Homestays Total Row (Auto-synced with itinerary + editable) -->
+            <div class="cost-input-row">
+              <span>Homestays Total (&#2547;)</span>
+              <input
+                type="number"
+                id="homestaysTotalInput"
+                value="400.00"
+                min="0"
+                step="10"
+                aria-label="Homestays Total in Taka"
+              />
+            </div>
+
+            <!-- Tours Total Row (Auto-synced with itinerary + editable) -->
+            <div class="cost-input-row" style="margin-bottom: 16px;">
+              <span>Tours Total (&#2547;)</span>
+              <input
+                type="number"
+                id="toursTotalInput"
+                value="200.00"
+                min="0"
+                step="10"
+                aria-label="Tours Total in Taka"
+              />
+            </div>
+
+            <!-- Number of Participants -->
+            <div class="form-group">
+              <label for="participantsInput" class="form-label">Number of Participants</label>
+              <input
+                type="number"
+                id="participantsInput"
+                class="form-control"
+                value="4"
+                min="1"
+                max="50"
+              />
+            </div>
+
+            <!-- Calculated Summary Box -->
+            <div class="split-summary-box">
+              <div class="split-summary-row">
+                <span>Total Trip Cost</span>
+                <strong id="totalTripCostDisplay">&#2547;600.00</strong>
+              </div>
+              <div class="split-per-person-row">
+                <span class="split-per-person-label">Cost Per Person (&#2547;)</span>
+                <span id="costPerPersonDisplay" class="split-per-person-value">150.00</span>
+              </div>
+            </div>
+
+            <p id="splitCostFootnote" class="form-hint">
+              Based on listed prices for all 4 participants. Negotiation offers are not included.
+            </p>
+          </section>
+        </div>
+
+        <!-- ==================================================================
+             BOTTOM ROW: FEATURE 2 — AJAX BOOKING NEGOTIATION
+             Future PHP Note: Send message & offer via fetch('api/negotiate.php')
+             and store in MESSAGE / NEGOTIATION table linked to booking_id.
+             ================================================================== -->
+        <section id="ajaxNegotiationCard" class="card" aria-labelledby="negotiationHeading">
+          <div class="card-header">
+            <div>
+              <h2 id="negotiationHeading" class="card-title">AJAX Booking Negotiation</h2>
+              <p class="card-subtitle">
+                Message your hosts and guides, and discuss a price before booking.
+              </p>
+            </div>
+          </div>
+
+          <div class="negotiation-grid">
+            <!-- Left Column: Active Conversations List -->
+            <div>
+              <div class="conv-list-header">
+                <span>Active conversations</span>
+                <span id="activeConvCount">3</span>
+              </div>
+
+              <!-- Conversation 1: Meherunnissa Ponni -->
+              <div class="conv-item active" data-conv-id="meherunnissa">
+                <div class="conv-item-top">
+                  <div class="avatar-circle">MP</div>
+                  <div class="conv-name-wrap">
+                    <div class="conv-name">
+                      <span>Meherunnissa Ponni</span>
+                      <span class="conv-time">10:24</span>
+                    </div>
+                    <div class="conv-role">Host</div>
+                  </div>
+                </div>
+                <div class="conv-listing">Srimangal Green Homestay</div>
+                <div class="conv-preview" data-conv-preview="meherunnissa">Happy to consider an offer.</div>
+              </div>
+
+              <!-- Conversation 2: Jemam Bin Islam -->
+              <div class="conv-item" data-conv-id="jemam">
+                <div class="conv-item-top">
+                  <div class="avatar-circle">JI</div>
+                  <div class="conv-name-wrap">
+                    <div class="conv-name">
+                      <span>Jemam Bin Islam</span>
+                      <span class="conv-time">09:45</span>
+                    </div>
+                    <div class="conv-role">Guide</div>
+                  </div>
+                </div>
+                <div class="conv-listing">Lawachara Rainforest Trail</div>
+                <div class="conv-preview" data-conv-preview="jemam">We can start at 8 AM.</div>
+              </div>
+
+              <!-- Conversation 3: Farzana Rahman -->
+              <div class="conv-item" data-conv-id="farzana">
+                <div class="conv-item-top">
+                  <div class="avatar-circle">FR</div>
+                  <div class="conv-name-wrap">
+                    <div class="conv-name">
+                      <span>Farzana Rahman</span>
+                      <span class="conv-time">Yesterday</span>
+                    </div>
+                    <div class="conv-role">Host</div>
+                  </div>
+                </div>
+                <div class="conv-listing">Surma Riverside Guesthouse</div>
+                <div class="conv-preview" data-conv-preview="farzana">Your group is welcome!</div>
+              </div>
+            </div>
+
+            <!-- Right Column: Active Chat Window & AJAX Offer Form -->
+            <div class="chat-panel">
+              <!-- Chat Header -->
+              <div class="chat-header">
+                <div class="chat-header-left">
+                  <div id="chatHeaderAvatar" class="avatar-circle">MP</div>
+                  <div>
+                    <div id="chatHeaderTitle" style="font-size: 0.875rem; font-weight: 700;">
+                      Meherunnissa Ponni &middot; Host
+                    </div>
+                    <div id="chatHeaderMeta" style="font-size: 0.75rem; color: var(--text-muted);">
+                      Srimangal Green Homestay &middot; 2 nights &middot; 4 guests
+                    </div>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <div style="font-size: 0.72rem; color: var(--text-muted);">Itinerary price</div>
+                  <div id="chatHeaderPrice" style="font-size: 0.95rem; font-weight: 800;">&#2547;240.00</div>
+                </div>
+              </div>
+
+              <!-- Chat Messages Container -->
+              <div id="chatMessagesContainer" class="chat-messages" aria-live="polite">
+                <div class="chat-day-divider">Today</div>
+
+                <div class="chat-bubble-wrap outgoing">
+                  <div class="chat-bubble">
+                    Hi Meherunnissa! We're planning a two-night stay in Srimangal for 4 guests. Is there any flexibility on the price?
+                  </div>
+                  <div class="chat-timestamp">You &middot; 10:20 AM</div>
+                </div>
+
+                <div class="chat-bubble-wrap incoming">
+                  <div class="chat-bubble">
+                    Hi Akimul! Yes, the listed total is &#2547;240 for your group. I'm happy to consider an offer for the two nights.
+                  </div>
+                  <div class="chat-timestamp">Meherunnissa &middot; 10:24 AM</div>
+                </div>
+              </div>
+
+              <!-- AJAX Message & Offer Composer -->
+              <form id="ajaxNegotiationForm" class="chat-composer" novalidate>
+                <div class="chat-composer-grid">
+                  <div>
+                    <label for="negotiationMessageInput" class="form-label">Message</label>
+                    <input
+                      type="text"
+                      id="negotiationMessageInput"
+                      class="form-control"
+                      value="Would you accept &#2547;220 for the two-night stay?"
+                      placeholder="Write a message to negotiate..."
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label for="negotiationOfferInput" class="form-label">Offer Price (&#2547;)</label>
+                    <input
+                      type="number"
+                      id="negotiationOfferInput"
+                      class="form-control"
+                      value="220"
+                      min="1"
+                      required
+                    />
+                  </div>
+
+                  <button type="submit" id="sendAjaxBtn" class="btn btn-primary">
+                    Send via AJAX
+                  </button>
+                </div>
+
+                <span id="negotiationCaption" class="form-hint" style="margin-top: 8px;">
+                  Proposed offer only. Your itinerary remains at &#2547;240 until a new price is agreed.
+                </span>
+              </form>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

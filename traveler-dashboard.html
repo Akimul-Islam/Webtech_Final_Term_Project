@@ -140,17 +140,17 @@
               <div>
                 <label for="savedListingSelect" class="form-label">Saved destination / listing</label>
                 <select id="savedListingSelect" class="form-control">
-                  <option value="Sylhet · Jaflong & Dawki River Tour|Tour|Evening · group price|90">
-                    Sylhet &middot; Jaflong &amp; Dawki River Tour
+                  <option value="Sylhet · Jaflong & Dawki River Tour|Tour|Evening · group price|1500">
+                    Sylhet &middot; Jaflong &amp; Dawki River Tour (&#2547;1,500)
                   </option>
-                  <option value="Srimangal Tea Garden Cottage|Homestay|2 nights · entire stay|130">
-                    Srimangal Tea Garden Cottage (&#2547;130)
+                  <option value="Srimangal Tea Garden Cottage|Homestay|2 nights · entire stay|2200">
+                    Srimangal Tea Garden Cottage (&#2547;2,200)
                   </option>
-                  <option value="Nilgiri & Chimbuk Hill Sunrise Trek|Tour|Morning · group price|100">
-                    Nilgiri &amp; Chimbuk Hill Sunrise Trek (&#2547;100)
+                  <option value="Nilgiri & Chimbuk Hill Sunrise Trek|Tour|Morning · group price|1200">
+                    Nilgiri &amp; Chimbuk Hill Sunrise Trek (&#2547;1,200)
                   </option>
-                  <option value="Sajek Cloud View Eco Stay|Homestay|2 nights · entire stay|96">
-                    Sajek Cloud View Eco Stay (&#2547;96)
+                  <option value="Sajek Cloud View Eco Stay|Homestay|2 nights · entire stay|1800">
+                    Sajek Cloud View Eco Stay (&#2547;1,800)
                   </option>
                 </select>
               </div>
@@ -174,7 +174,7 @@
             <!-- Dynamic Timeline List (Manipulated via JavaScript DOM methods) -->
             <div id="itineraryTimeline" class="itinerary-timeline">
               <!-- Item 1 -->
-              <div class="itinerary-item" data-day="1" data-type="Homestay" data-price="240">
+              <div class="itinerary-item" data-day="1" data-type="Homestay" data-price="2400">
                 <span class="day-pill">Day 1</span>
                 <div>
                   <div class="itinerary-info-title">Srimangal Green Homestay</div>
@@ -183,12 +183,12 @@
                     <span>2 nights &middot; entire stay</span>
                   </div>
                 </div>
-                <div class="itinerary-price">&#2547;240.00</div>
+                <div class="itinerary-price">&#2547;2400.00</div>
                 <button type="button" class="btn btn-remove btn-remove-itinerary">Remove</button>
               </div>
 
               <!-- Item 2 -->
-              <div class="itinerary-item" data-day="2" data-type="Tour" data-price="120">
+              <div class="itinerary-item" data-day="2" data-type="Tour" data-price="1200">
                 <span class="day-pill">Day 2</span>
                 <div>
                   <div class="itinerary-info-title">Lawachara Rainforest Trail</div>
@@ -197,12 +197,12 @@
                     <span>Half day &middot; group price</span>
                   </div>
                 </div>
-                <div class="itinerary-price">&#2547;120.00</div>
+                <div class="itinerary-price">&#2547;1200.00</div>
                 <button type="button" class="btn btn-remove btn-remove-itinerary">Remove</button>
               </div>
 
               <!-- Item 3 -->
-              <div class="itinerary-item" data-day="3" data-type="Homestay" data-price="160">
+              <div class="itinerary-item" data-day="3" data-type="Homestay" data-price="1600">
                 <span class="day-pill">Day 3</span>
                 <div>
                   <div class="itinerary-info-title">Surma Riverside Guesthouse</div>
@@ -211,12 +211,12 @@
                     <span>1 night &middot; entire stay</span>
                   </div>
                 </div>
-                <div class="itinerary-price">&#2547;160.00</div>
+                <div class="itinerary-price">&#2547;1600.00</div>
                 <button type="button" class="btn btn-remove btn-remove-itinerary">Remove</button>
               </div>
 
               <!-- Item 4 -->
-              <div class="itinerary-item" data-day="3" data-type="Tour" data-price="80">
+              <div class="itinerary-item" data-day="3" data-type="Tour" data-price="800">
                 <span class="day-pill">Day 3</span>
                 <div>
                   <div class="itinerary-info-title">Sylheti Seven-Layer Tea &amp; Food Tour</div>
@@ -225,7 +225,7 @@
                     <span>Evening &middot; group price</span>
                   </div>
                 </div>
-                <div class="itinerary-price">&#2547;80.00</div>
+                <div class="itinerary-price">&#2547;800.00</div>
                 <button type="button" class="btn btn-remove btn-remove-itinerary">Remove</button>
               </div>
             </div>
@@ -246,9 +246,9 @@
               <input
                 type="number"
                 id="homestaysTotalInput"
-                value="400.00"
+                value="4000.00"
                 min="0"
-                step="10"
+                step="100"
                 aria-label="Homestays Total in Taka"
               />
             </div>
@@ -259,9 +259,9 @@
               <input
                 type="number"
                 id="toursTotalInput"
-                value="200.00"
+                value="2000.00"
                 min="0"
-                step="10"
+                step="100"
                 aria-label="Tours Total in Taka"
               />
             </div>
@@ -283,11 +283,11 @@
             <div class="split-summary-box">
               <div class="split-summary-row">
                 <span>Total Trip Cost</span>
-                <strong id="totalTripCostDisplay">&#2547;600.00</strong>
+                <strong id="totalTripCostDisplay">&#2547;6000.00</strong>
               </div>
               <div class="split-per-person-row">
                 <span class="split-per-person-label">Cost Per Person (&#2547;)</span>
-                <span id="costPerPersonDisplay" class="split-per-person-value">150.00</span>
+                <span id="costPerPersonDisplay" class="split-per-person-value">1500.00</span>
               </div>
             </div>
 
@@ -386,7 +386,7 @@
                 </div>
                 <div class="text-right">
                   <div style="font-size: 0.72rem; color: var(--text-muted);">Itinerary price</div>
-                  <div id="chatHeaderPrice" style="font-size: 0.95rem; font-weight: 800;">&#2547;240.00</div>
+                  <div id="chatHeaderPrice" style="font-size: 0.95rem; font-weight: 800;">&#2547;2,400.00</div>
                 </div>
               </div>
 
@@ -403,7 +403,7 @@
 
                 <div class="chat-bubble-wrap incoming">
                   <div class="chat-bubble">
-                    Hi Akimul! Yes, the listed total is &#2547;240 for your group. I'm happy to consider an offer for the two nights.
+                    Hi Akimul! Yes, the listed total is &#2547;2,400 for your group. I'm happy to consider an offer for the two nights.
                   </div>
                   <div class="chat-timestamp">Meherunnissa &middot; 10:24 AM</div>
                 </div>
@@ -418,7 +418,7 @@
                       type="text"
                       id="negotiationMessageInput"
                       class="form-control"
-                      value="Would you accept &#2547;220 for the two-night stay?"
+                      value="Would you accept &#2547;2,200 for the two-night stay?"
                       placeholder="Write a message to negotiate..."
                       required
                     />
@@ -430,7 +430,7 @@
                       type="number"
                       id="negotiationOfferInput"
                       class="form-control"
-                      value="220"
+                      value="2200"
                       min="1"
                       required
                     />
@@ -442,7 +442,7 @@
                 </div>
 
                 <span id="negotiationCaption" class="form-hint" style="margin-top: 8px;">
-                  Proposed offer only. Your itinerary remains at &#2547;240 until a new price is agreed.
+                  Proposed offer only. Your itinerary remains at &#2547;2,400 until a new price is agreed.
                 </span>
               </form>
             </div>

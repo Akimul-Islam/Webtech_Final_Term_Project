@@ -144,14 +144,14 @@
 
             <div class="kpi-card">
               <div class="kpi-label">Estimated Gross Earnings (&#2547;)</div>
-              <div id="kpiGrossEarnings" class="kpi-value">4,320.00</div>
+              <div id="kpiGrossEarnings" class="kpi-value">43,200.00</div>
               <div class="kpi-subtext">Confirmed bookings only</div>
             </div>
 
             <div class="kpi-card">
               <div class="kpi-label">Net Income After Commission (&#2547;)</div>
-              <div id="kpiNetIncome" class="kpi-value kpi-value-blue">3,888.00</div>
-              <div id="kpiCommissionSubtext" class="kpi-subtext">&#2547;432.00 estimated commission</div>
+              <div id="kpiNetIncome" class="kpi-value kpi-value-blue">38,880.00</div>
+              <div id="kpiCommissionSubtext" class="kpi-subtext">&#2547;4,320.00 estimated commission</div>
             </div>
           </div>
 
@@ -175,23 +175,23 @@
                   <tr>
                     <td style="color: var(--primary); font-weight: 700;">October 2026 &middot; current</td>
                     <td id="octBookingsCell" class="text-right" style="font-weight: 700;">18</td>
-                    <td id="octGrossCell" class="text-right" style="font-weight: 700;">4,320.00</td>
-                    <td id="octCommCell" class="text-right" style="font-weight: 700;">432.00</td>
-                    <td id="octNetCell" class="text-right" style="font-weight: 700;">3,888.00</td>
+                    <td id="octGrossCell" class="text-right" style="font-weight: 700;">43,200.00</td>
+                    <td id="octCommCell" class="text-right" style="font-weight: 700;">4,320.00</td>
+                    <td id="octNetCell" class="text-right" style="font-weight: 700;">38,880.00</td>
                   </tr>
                   <tr>
                     <td>September 2026</td>
                     <td class="text-right">16</td>
+                    <td class="text-right">38,400.00</td>
                     <td class="text-right">3,840.00</td>
-                    <td class="text-right">384.00</td>
-                    <td class="text-right">3,456.00</td>
+                    <td class="text-right">34,560.00</td>
                   </tr>
                   <tr>
                     <td>August 2026</td>
                     <td class="text-right">14</td>
+                    <td class="text-right">33,600.00</td>
                     <td class="text-right">3,360.00</td>
-                    <td class="text-right">336.00</td>
-                    <td class="text-right">3,024.00</td>
+                    <td class="text-right">30,240.00</td>
                   </tr>
                 </tbody>
               </table>
@@ -243,9 +243,9 @@
                     type="number"
                     id="seasonalPriceInput"
                     class="form-control"
-                    value="150.00"
-                    min="10"
-                    step="5"
+                    value="1800.00"
+                    min="500"
+                    step="100"
                     required
                   />
                 </div>
@@ -295,7 +295,7 @@
                 <span id="seasonalRuleCount" class="card-meta-right">2 rules</span>
               </div>
               <p class="form-hint" style="margin-top: 0; margin-bottom: 10px;">
-                Srimangal Green Homestay &middot; Base rate &#2547;120 / night
+                Srimangal Green Homestay &middot; Base rate &#2547;1,500 / night
               </p>
 
               <div id="seasonalRulesList">
@@ -305,7 +305,7 @@
                     <div class="cell-secondary">Oct 1 &ndash; Nov 30, 2026 &middot; Sat &amp; Sun</div>
                   </div>
                   <div class="text-right">
-                    <div class="cell-primary" style="font-size: 0.9rem;">&#2547;140</div>
+                    <div class="cell-primary" style="font-size: 0.9rem;">&#2547;1,800</div>
                     <div class="cell-secondary">/ night</div>
                   </div>
                 </div>
@@ -316,7 +316,7 @@
                     <div class="cell-secondary">Dec 24 &ndash; Dec 31, 2026 &middot; Every night</div>
                   </div>
                   <div class="text-right">
-                    <div class="cell-primary" style="font-size: 0.9rem;">&#2547;175</div>
+                    <div class="cell-primary" style="font-size: 0.9rem;">&#2547;2,200</div>
                     <div class="cell-secondary">/ night</div>
                   </div>
                 </div>
@@ -372,7 +372,7 @@
                 </thead>
                 <tbody id="hostBookingRequestsBody">
                   <!-- Request 1 -->
-                  <tr data-request-price="360">
+                  <tr data-request-price="2800">
                     <td>
                       <span class="cell-primary">Tanvir Ahmed</span>
                       <span class="cell-secondary">2 guests</span>
@@ -380,10 +380,10 @@
                     <td>
                       <span style="display: block;">Oct 25, 2026</span>
                       <span style="display: block;">Oct 28, 2026</span>
-                      <span class="cell-secondary">3 nights</span>
+                      <span class="cell-secondary">2 nights</span>
                     </td>
                     <td>
-                      <span class="cell-primary">&#2547;360.00</span>
+                      <span class="cell-primary">&#2547;2,800.00</span>
                       <span class="cell-secondary">Stay total</span>
                     </td>
                     <td class="request-status-cell">
@@ -398,7 +398,7 @@
                   </tr>
 
                   <!-- Request 2 -->
-                  <tr data-request-price="390">
+                  <tr data-request-price="3000">
                     <td>
                       <span class="cell-primary">Nusrat Jahan</span>
                       <span class="cell-secondary">2 guests</span>
@@ -406,10 +406,10 @@
                     <td>
                       <span style="display: block;">Oct 29, 2026</span>
                       <span style="display: block;">Nov 1, 2026</span>
-                      <span class="cell-secondary">3 nights</span>
+                      <span class="cell-secondary">2 nights</span>
                     </td>
                     <td>
-                      <span class="cell-primary">&#2547;390.00</span>
+                      <span class="cell-primary">&#2547;3,000.00</span>
                       <span class="cell-secondary">Stay total</span>
                     </td>
                     <td class="request-status-cell">
@@ -424,7 +424,7 @@
                   </tr>
 
                   <!-- Request 3 -->
-                  <tr data-request-price="240">
+                  <tr data-request-price="2400">
                     <td>
                       <span class="cell-primary">Farhan Sadik</span>
                       <span class="cell-secondary">2 guests</span>
@@ -435,7 +435,7 @@
                       <span class="cell-secondary">2 nights</span>
                     </td>
                     <td>
-                      <span class="cell-primary">&#2547;240.00</span>
+                      <span class="cell-primary">&#2547;2,400.00</span>
                       <span class="cell-secondary">Stay total</span>
                     </td>
                     <td class="request-status-cell">

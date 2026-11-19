@@ -11,7 +11,7 @@
  */
 
 /* --------------------------------------------------------------------------
-   1. PLATFORM COMMISSION MANAGEMENT (Live Calculator on ৳200 Example Booking)
+   1. PLATFORM COMMISSION MANAGEMENT (Live Calculator on ৳2,000 Example Booking)
    -------------------------------------------------------------------------- */
 const commissionForm = document.getElementById('commissionForm');
 const commissionInput = document.getElementById('commissionRateInput');
@@ -20,13 +20,13 @@ const currentRateCaption = document.getElementById('currentRateCaption');
 
 function calculateCommissionPreview() {
   const rate = parseFloat(commissionInput.value) || 0;
-  const exampleBooking = 200;
+  const exampleBooking = 2000;
 
   const platformFee = (exampleBooking * rate) / 100;
   const netEarnings = exampleBooking - platformFee;
 
   previewText.textContent =
-    'Example ৳200 Booking → Platform Fee: ৳' +
+    'Example ৳2,000 Booking → Platform Fee: ৳' +
     platformFee +
     ' | Host/Guide Net Earnings: ৳' +
     netEarnings;

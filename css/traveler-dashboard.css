@@ -1,0 +1,657 @@
+/* ==========================================================================
+   TRAVELER DASHBOARD STYLESHEET (css/traveler-dashboard.css)
+   Used by: traveler-dashboard.html
+   Description: Pure CSS styles for the Traveler Dashboard, including Smart
+   Itinerary Builder timeline, Split Cost Calculator, and AJAX Negotiation UI.
+   ========================================================================== */
+
+:root {
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-light: #eff6ff;
+  --primary-border: #bfdbfe;
+  --bg-page: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-subtle: #f1f5f9;
+  --border-color: #e2e8f0;
+  --text-main: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --danger-bg: #fef2f2;
+  --danger-border: #fecaca;
+  --danger-text: #dc2626;
+  --sidebar-width: 240px;
+  --topbar-height: 68px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+button, input, select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* Brand Logo & Shell */
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.brand-logo-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background-color: var(--primary);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  background-color: #ffffff;
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.sidebar-brand {
+  height: var(--topbar-height);
+  padding: 0 22px;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-nav {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+}
+
+.sidebar-link svg {
+  width: 17px;
+  height: 17px;
+}
+
+.sidebar-link:hover {
+  background-color: var(--bg-subtle);
+  color: var(--text-main);
+}
+
+.sidebar-link.active {
+  background-color: var(--primary-light);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.sidebar-footer {
+  padding: 14px;
+  border-top: 1px solid var(--border-color);
+}
+
+.main-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.topbar {
+  height: var(--topbar-height);
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--border-color);
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topbar-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.topbar-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.topbar-user-name {
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.avatar-circle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: #dbeafe;
+  color: var(--primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.dashboard-content {
+  padding: 28px 32px 48px;
+  max-width: 1240px;
+}
+
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-title {
+  font-size: 1.65rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.page-subtitle {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+/* Badges & Buttons */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+}
+
+.badge-role {
+  background-color: var(--primary-light);
+  color: var(--primary);
+  padding: 5px 12px;
+  font-size: 0.8125rem;
+}
+
+.badge-info {
+  background-color: var(--primary-light);
+  color: var(--primary);
+}
+
+.badge-neutral {
+  background-color: var(--bg-subtle);
+  color: var(--text-secondary);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 18px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-remove {
+  background-color: var(--danger-bg);
+  color: var(--danger-text);
+  border-color: var(--danger-border);
+  padding: 6px 12px;
+  font-size: 0.8125rem;
+}
+
+/* Forms & Cards */
+.card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+  box-shadow: var(--shadow-xs);
+  margin-bottom: 22px;
+}
+
+.card-header {
+  margin-bottom: 18px;
+}
+
+.card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+.card-subtitle {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 9px 12px;
+  font-size: 0.875rem;
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  outline: none;
+}
+
+.form-control:focus {
+  border-color: var(--primary);
+}
+
+.form-hint {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 5px;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Top Grid: Itinerary Builder & Split Cost Calculator */
+.grid-traveler-top {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
+  gap: 22px;
+}
+
+.itinerary-controls {
+  display: grid;
+  grid-template-columns: 1fr 88px auto;
+  gap: 10px;
+  align-items: end;
+  margin-bottom: 20px;
+}
+
+.itinerary-timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+.itinerary-item {
+  display: grid;
+  grid-template-columns: 58px 1fr auto auto;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
+}
+
+.itinerary-item:last-child {
+  border-bottom: none;
+}
+
+.itinerary-item:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 25px;
+  top: 38px;
+  bottom: -16px;
+  width: 2px;
+  background-color: var(--border-color);
+}
+
+.day-pill {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background-color: var(--primary-light);
+  color: var(--primary);
+  border-radius: var(--radius-sm);
+}
+
+.itinerary-info-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.itinerary-info-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.itinerary-price {
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+/* Split Cost Calculator */
+.cost-input-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 12px;
+  background-color: var(--bg-page);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  margin-bottom: 10px;
+  font-size: 0.8125rem;
+}
+
+.cost-input-row span {
+  color: var(--text-secondary);
+}
+
+.cost-input-row input {
+  width: 90px;
+  text-align: right;
+  font-weight: 700;
+  border: none;
+  background: transparent;
+  outline: none;
+}
+
+.split-summary-box {
+  background-color: var(--primary-light);
+  border: 1px solid var(--primary-border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  margin-top: 16px;
+  margin-bottom: 12px;
+}
+
+.split-summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--primary-border);
+}
+
+.split-summary-row strong {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.split-per-person-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.split-per-person-label {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.split-per-person-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+/* AJAX Booking Negotiation Chat */
+.negotiation-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 20px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 18px;
+}
+
+.conv-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.conv-item {
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  margin-bottom: 10px;
+  background-color: #ffffff;
+}
+
+.conv-item.active {
+  background-color: var(--primary-light);
+  border-color: var(--primary-border);
+}
+
+.conv-item-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.conv-name-wrap {
+  flex: 1;
+}
+
+.conv-name {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.conv-item.active .conv-name span:first-child {
+  color: var(--primary);
+}
+
+.conv-time {
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.conv-role {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.conv-listing {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.conv-preview {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.chat-panel {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+}
+
+.chat-header {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chat-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chat-messages {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-height: 290px;
+  overflow-y: auto;
+}
+
+.chat-day-divider {
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.chat-bubble-wrap {
+  display: flex;
+  flex-direction: column;
+  max-width: 76%;
+}
+
+.chat-bubble-wrap.outgoing {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+
+.chat-bubble-wrap.incoming {
+  align-self: flex-start;
+  align-items: flex-start;
+}
+
+.chat-bubble {
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  font-size: 0.8125rem;
+}
+
+.chat-bubble-wrap.outgoing .chat-bubble {
+  background-color: var(--primary-light);
+  border: 1px solid var(--primary-border);
+}
+
+.chat-bubble-wrap.incoming .chat-bubble {
+  background-color: var(--bg-page);
+  border: 1px solid var(--border-color);
+}
+
+.chat-timestamp {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.chat-composer {
+  padding: 14px 18px;
+  border-top: 1px solid var(--border-color);
+}
+
+.chat-composer-grid {
+  display: grid;
+  grid-template-columns: 1fr 125px auto;
+  gap: 10px;
+  align-items: end;
+}
+
+@media (max-width: 1024px) {
+  .grid-traveler-top,
+  .negotiation-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-shell {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+  }
+  .itinerary-controls,
+  .chat-composer-grid {
+    grid-template-columns: 1fr;
+  }
+}

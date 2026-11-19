@@ -21,7 +21,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Panel — Localnest</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/admin-dashboard.css" />
 </head>
 <body data-page="admin-dashboard">
 
@@ -463,23 +463,6 @@
     </div>
   </div>
 
-  <!-- Document / Photo Preview Modal for Verification Table -->
-  <div id="docPreviewModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="docModalTitle">
-    <div class="modal-dialog">
-      <div class="modal-header">
-        <h3 id="docModalTitle" class="card-title">Submission Preview</h3>
-        <button type="button" id="closeDocModal" class="modal-close" aria-label="Close modal">&times;</button>
-      </div>
-      <p id="docModalMeta" class="card-subtitle" style="margin-bottom: 16px;"></p>
-      <div style="background-color: var(--bg-page); border: 1px dashed var(--border-strong); border-radius: var(--radius-md); padding: 28px; text-align: center; color: var(--text-secondary); font-size: 0.825rem; margin-bottom: 18px;">
-        Verified submission files are attached and ready for administrator inspection.
-      </div>
-      <div style="display: flex; justify-content: flex-end;">
-        <button type="button" id="docModalCloseBtn" class="btn btn-primary">Done Reviewing</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="js/main.js"></script>
+  <script src="js/admin-dashboard.js"></script>
 </body>
 </html>

@@ -16,7 +16,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Localnest — Find Local Homestays &amp; Custom Guided Tours</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/index.css" />
 </head>
 <body data-page="home">
 
@@ -154,9 +154,6 @@
               Thoughtfully chosen stays and experiences, brought to you by locals.
             </p>
           </div>
-          <button type="button" id="resetFilterBtn" class="btn btn-outline" style="display: none;">
-            Reset Filters
-          </button>
         </div>
 
         <!-- 3x2 Cards Grid -->
@@ -199,7 +196,7 @@
               </p>
               <div class="listing-footer">
                 <div class="listing-price">&#2547;65 <span>/ night</span></div>
-                <button type="button" class="btn btn-primary btn-view-book">View / Book</button>
+                <a href="traveler-dashboard.html" class="btn btn-primary">View / Book</a>
               </div>
             </div>
           </article>
@@ -242,7 +239,7 @@
               </p>
               <div class="listing-footer">
                 <div class="listing-price">&#2547;35 <span>/ tour</span></div>
-                <button type="button" class="btn btn-primary btn-view-book">View / Book</button>
+                <a href="traveler-dashboard.html" class="btn btn-primary">View / Book</a>
               </div>
             </div>
           </article>
@@ -284,7 +281,7 @@
               </p>
               <div class="listing-footer">
                 <div class="listing-price">&#2547;48 <span>/ night</span></div>
-                <button type="button" class="btn btn-primary btn-view-book">View / Book</button>
+                <a href="traveler-dashboard.html" class="btn btn-primary">View / Book</a>
               </div>
             </div>
           </article>
@@ -327,7 +324,7 @@
               </p>
               <div class="listing-footer">
                 <div class="listing-price">&#2547;42 <span>/ tour</span></div>
-                <button type="button" class="btn btn-primary btn-view-book">View / Book</button>
+                <a href="traveler-dashboard.html" class="btn btn-primary">View / Book</a>
               </div>
             </div>
           </article>
@@ -369,7 +366,7 @@
               </p>
               <div class="listing-footer">
                 <div class="listing-price">&#2547;55 <span>/ night</span></div>
-                <button type="button" class="btn btn-primary btn-view-book">View / Book</button>
+                <a href="traveler-dashboard.html" class="btn btn-primary">View / Book</a>
               </div>
             </div>
           </article>
@@ -412,7 +409,7 @@
               </p>
               <div class="listing-footer">
                 <div class="listing-price">&#2547;60 <span>/ tour</span></div>
-                <button type="button" class="btn btn-primary btn-view-book">View / Book</button>
+                <a href="traveler-dashboard.html" class="btn btn-primary">View / Book</a>
               </div>
             </div>
           </article>
@@ -423,33 +420,7 @@
   </main>
 
   <!-- ========================================================================
-       4. INTERACTIVE LISTING PREVIEW / BOOKING MODAL
-       Opened via JavaScript when clicking any "View / Book" button.
-       Allows adding the experience to the Traveler's Smart Itinerary Builder.
-       ======================================================================== -->
-  <div id="listingModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modalListingTitle">
-    <div class="modal-dialog">
-      <div class="modal-header">
-        <div>
-          <span id="modalListingCategory" class="badge badge-info">Homestay</span>
-          <h3 id="modalListingTitle" class="card-title" style="margin-top: 6px; font-size: 1.2rem;">Listing Title</h3>
-        </div>
-        <button type="button" id="closeListingModal" class="modal-close" aria-label="Close modal">&times;</button>
-      </div>
-      <p id="modalListingLocation" class="card-subtitle" style="margin-bottom: 12px;"></p>
-      <p id="modalListingPrice" style="font-size: 1.15rem; font-weight: 800; margin-bottom: 16px;"></p>
-      <p class="card-subtitle" style="margin-bottom: 20px;">
-        You can add this verified experience directly to your Smart Itinerary Builder or negotiate a group rate with the host/guide via AJAX in the Traveler Dashboard.
-      </p>
-      <div class="action-btns" style="width: 100%; justify-content: flex-end;">
-        <button type="button" id="modalCancelBtn" class="btn btn-outline">Close</button>
-        <a href="traveler-dashboard.html" id="modalBookNowBtn" class="btn btn-primary">Open in Traveler Dashboard</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- ========================================================================
-       5. FOOTER
+       4. FOOTER
        Matches the Figma footer layout.
        ======================================================================== -->
   <footer class="public-footer">
@@ -475,8 +446,8 @@
           <h4 class="footer-col-title">Explore</h4>
           <ul class="footer-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="#featuredSection" data-nav-filter="Homestay">Homestays</a></li>
-            <li><a href="#featuredSection" data-nav-filter="Local tour">Local Tours</a></li>
+            <li><a href="#featuredSection">Homestays</a></li>
+            <li><a href="#featuredSection">Local Tours</a></li>
           </ul>
         </div>
 
@@ -493,7 +464,7 @@
     </div>
   </footer>
 
-  <!-- Main Vanilla JavaScript File -->
-  <script src="js/main.js"></script>
+  <!-- Homepage Vanilla JavaScript File -->
+  <script src="js/index.js"></script>
 </body>
 </html>

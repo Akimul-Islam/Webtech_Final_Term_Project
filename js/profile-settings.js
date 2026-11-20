@@ -1,19 +1,8 @@
-/**
- * ============================================================================
- * PROFILE SETTINGS JAVASCRIPT (js/profile-settings.js)
- * Used by: profile-settings.html
- * Description:
- * Simple client-side form validation for Manage Profile Information and
- * Change / Reset Password forms.
- * ============================================================================
- */
-
 const profileForm = document.getElementById('profileInfoForm');
 const profileBanner = document.getElementById('profileStatusBanner');
 const photoInput = document.getElementById('profilePhotoInput');
 const photoFileName = document.getElementById('profilePhotoFileName');
 
-// Show selected image file name when the user picks a file
 if (photoInput) {
   photoInput.addEventListener('change', function () {
     if (photoInput.files.length > 0) {
@@ -22,7 +11,6 @@ if (photoInput) {
   });
 }
 
-// 1. Validate Manage Profile Information form
 if (profileForm) {
   profileForm.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -39,7 +27,6 @@ if (profileForm) {
       return;
     }
 
-    // Update name in top header bar
     document.getElementById('topbarUserName').textContent = fullName;
 
     profileBanner.textContent = 'Profile changes validated (ready for PHP database update).';
@@ -47,7 +34,6 @@ if (profileForm) {
   });
 }
 
-// 2. Validate Change / Reset Password form
 const passwordForm = document.getElementById('changePasswordForm');
 const passwordBanner = document.getElementById('passwordStatusBanner');
 

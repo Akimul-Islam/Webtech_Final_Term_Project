@@ -1,11 +1,3 @@
-/* ==========================================================================
-   ADMIN PANEL STYLESHEET (css/admin-dashboard.css)
-   Used by: admin-dashboard.html
-   Description: Pure CSS styles for the Administrator Panel, including dark
-   navy sidebar, Platform Commission Management, User & Listing Verification,
-   and Booking Dispute Management.
-   ========================================================================== */
-
 :root {
   --primary: #2563eb;
   --primary-hover: #1d4ed8;
@@ -62,7 +54,6 @@ button, input {
   color: inherit;
 }
 
-/* Brand Logo & Shell */
 .brand-logo {
   display: inline-flex;
   align-items: center;
@@ -92,7 +83,6 @@ button, input {
   display: flex;
 }
 
-/* Dark Admin Sidebar */
 .sidebar {
   width: var(--sidebar-width);
   background-color: var(--sidebar-dark-bg);
@@ -220,7 +210,6 @@ button, input {
   color: var(--text-muted);
 }
 
-/* Badges & Buttons */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -318,7 +307,6 @@ button, input {
   gap: 6px;
 }
 
-/* Cards, Forms & Tables */
 .card {
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
@@ -428,7 +416,6 @@ button, input {
   margin-top: 2px;
 }
 
-/* Commission & Dispute Sections */
 .commission-grid {
   display: grid;
   grid-template-columns: 320px 1fr;

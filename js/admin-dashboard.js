@@ -1,18 +1,3 @@
-/**
- * ============================================================================
- * ADMIN PANEL JAVASCRIPT (js/admin-dashboard.js)
- * Used by: admin-dashboard.html
- * Description:
- * Simple client-side interactivity for:
- *   1. Platform Commission Management (live fee & net earnings calculator)
- *   2. User & Listing Verification (Approve & Publish / Reject status update)
- *   3. Booking Dispute Management (Resolve for Traveler or Host/Guide)
- * ============================================================================
- */
-
-/* --------------------------------------------------------------------------
-   1. PLATFORM COMMISSION MANAGEMENT (Live Calculator on ৳2,000 Example Booking)
-   -------------------------------------------------------------------------- */
 const commissionForm = document.getElementById('commissionForm');
 const commissionInput = document.getElementById('commissionRateInput');
 const previewText = document.getElementById('commissionPreviewText');
@@ -47,9 +32,6 @@ if (commissionForm) {
   });
 }
 
-/* --------------------------------------------------------------------------
-   2. USER & LISTING VERIFICATION (Approve / Reject Status Update)
-   -------------------------------------------------------------------------- */
 const approveButtons = document.querySelectorAll('.btn-verify-approve');
 for (let i = 0; i < approveButtons.length; i++) {
   approveButtons[i].addEventListener('click', function () {
@@ -68,9 +50,6 @@ for (let i = 0; i < rejectButtons.length; i++) {
   });
 }
 
-/* --------------------------------------------------------------------------
-   3. BOOKING DISPUTE MANAGEMENT (Resolve Buttons)
-   -------------------------------------------------------------------------- */
 const resolveTravelerBtn = document.getElementById('resolveTravelerBtn');
 const resolveHostBtn = document.getElementById('resolveHostBtn');
 const disputeStatusBadge = document.getElementById('detailDisputeStatusBadge');

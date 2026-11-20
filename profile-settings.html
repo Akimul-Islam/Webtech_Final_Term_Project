@@ -1,23 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!--
-    ==========================================================================
-    PAGE 4: ACCOUNT & PROFILE SETTINGS (profile-settings.html)
-    Project: Local Nest - Integrated Homestay & Local Experience Booking Platform
-    Course: CSC 3215: Web Technologies (AIUB)
-    Description:
-    Common Account Management page available to all 4 user types (Traveler,
-    Host, Local Guide, and Admin).
-    Features:
-      1. Manage Profile Information (Full Name, Email, Phone, and Photo Upload
-         with live client-side image preview and 2 MB size validation).
-      2. Change / Reset Password (validates current password, minimum 8 chars,
-         and confirmation match).
-    Future PHP Note: Handle profile photo upload using $_FILES['profile_photo']
-    and move_uploaded_file(), and update password hash in the USER table.
-    ==========================================================================
-  -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Account &amp; Profile Settings — Localnest</title>
@@ -27,9 +10,6 @@
 <body data-page="profile">
 
   <div class="app-shell">
-    <!-- ======================================================================
-         1. LEFT SIDEBAR NAVIGATION
-         ====================================================================== -->
     <aside class="sidebar">
       <div class="sidebar-brand">
         <a href="index.html" class="brand-logo">
@@ -39,7 +19,6 @@
       </div>
 
       <nav class="sidebar-nav" aria-label="Profile Sidebar Navigation">
-        <!-- Dynamically points to the active user's role dashboard via JS -->
         <a href="traveler-dashboard.html" id="backToDashboardLink" class="sidebar-link">
           <i class="fa-solid fa-arrow-left"></i>
           <span>Back to Dashboard</span>
@@ -59,11 +38,7 @@
       </div>
     </aside>
 
-    <!-- ======================================================================
-         2. MAIN CONTENT AREA (TOPBAR + TWO-COLUMN SETTINGS CARDS)
-         ====================================================================== -->
     <div class="main-wrapper">
-      <!-- Top Header Bar -->
       <header class="topbar">
         <div class="topbar-title">Profile Settings</div>
         <div class="topbar-user">
@@ -73,7 +48,6 @@
         </div>
       </header>
 
-      <!-- Main Page Body -->
       <main class="dashboard-content">
         <div class="page-header">
           <h1 class="page-title">Account &amp; Profile Settings</h1>
@@ -83,9 +57,6 @@
         </div>
 
         <div class="grid-2-col">
-          <!-- ================================================================
-               LEFT CARD: MANAGE PROFILE INFORMATION
-               ================================================================ -->
           <section class="card" aria-labelledby="manageProfileHeading">
             <div class="card-header">
               <div>
@@ -94,11 +65,9 @@
               </div>
             </div>
 
-            <!-- Feedback Banner for Profile Form -->
             <div id="profileStatusBanner" class="status-banner" style="display: none;" role="status"></div>
 
             <form id="profileInfoForm" novalidate>
-              <!-- Avatar & Photo Upload Row -->
               <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
                 <div id="profilePreviewAvatar" class="avatar-circle avatar-lg">AI</div>
                 <div>
@@ -155,9 +124,6 @@
             </form>
           </section>
 
-          <!-- ================================================================
-               RIGHT CARD: CHANGE / RESET PASSWORD
-               ================================================================ -->
           <section class="card" aria-labelledby="changePasswordHeading">
             <div class="card-header">
               <div>
@@ -166,7 +132,6 @@
               </div>
             </div>
 
-            <!-- Feedback Banner for Password Form -->
             <div id="passwordStatusBanner" class="status-banner" style="display: none;" role="status"></div>
 
             <form id="changePasswordForm" novalidate>

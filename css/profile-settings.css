@@ -330,6 +330,38 @@ button, input {
   border-color: var(--border-strong);
 }
 
+.is-hidden {
+  display: none;
+}
+
+.photo-upload-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.photo-upload-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.btn-upload-photo {
+  padding: 7px 14px;
+  font-size: 0.8125rem;
+  cursor: pointer;
+}
+
+.form-hint-flush {
+  margin-top: 0;
+}
+
+.form-group-last {
+  margin-bottom: 20px;
+}
+
 @media (max-width: 1024px) {
   .grid-2-col {
     grid-template-columns: 1fr;

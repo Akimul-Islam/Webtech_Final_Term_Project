@@ -628,6 +628,34 @@ button, input, select {
   align-items: end;
 }
 
+.cost-input-row-spaced {
+  margin-bottom: 16px;
+}
+
+.chat-header-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.chat-header-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.chat-price-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.chat-price-value {
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.negotiation-caption {
+  margin-top: 8px;
+}
+
 @media (max-width: 1024px) {
   .grid-traveler-top,
   .negotiation-grid {

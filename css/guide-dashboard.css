@@ -407,6 +407,106 @@ textarea.form-control {
   text-align: right;
 }
 
+.fw-bold {
+  font-weight: 700;
+}
+
+.is-hidden {
+  display: none;
+}
+
+.mb-6 {
+  margin-bottom: 6px;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.mb-14 {
+  margin-bottom: 14px;
+}
+
+.mb-16 {
+  margin-bottom: 16px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.mt-8 {
+  margin-top: 8px;
+}
+
+.mt-16 {
+  margin-top: 16px;
+}
+
+.request-radio-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.row-selected .request-radio-label {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.bid-summary-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.bid-summary-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.bid-summary-target {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.bid-form-grid {
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.bid-itinerary-textarea {
+  min-height: 112px;
+}
+
+.tour-status-select {
+  padding: 5px 8px;
+  font-size: 0.78rem;
+  width: 120px;
+}
+
+.guide-verification-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.guide-verification-text {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.guide-experience-textarea {
+  min-height: 82px;
+}
+
 @media (max-width: 1024px) {
   .grid-2-col {
     grid-template-columns: 1fr;

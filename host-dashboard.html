@@ -97,9 +97,9 @@
              FEATURE 6: EARNINGS & BOOKING ANALYTICS
              Automatically updates when booking requests below are accepted!
              ================================================================== -->
-        <section aria-labelledby="analyticsHeading" style="margin-bottom: 24px;">
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
-            <h2 id="analyticsHeading" class="card-title" style="font-size: 1.05rem;">
+        <section aria-labelledby="analyticsHeading" class="analytics-section">
+          <div class="analytics-header">
+            <h2 id="analyticsHeading" class="card-title">
               Earnings &amp; Booking Analytics
             </h2>
             <span class="card-meta-right">As of October 23, 2026 &middot; BDT (&#2547;)</span>
@@ -127,8 +127,8 @@
           </div>
 
           <!-- Monthly Income Summary Table Card -->
-          <div class="card" style="margin-bottom: 6px; padding: 18px 22px;">
-            <h3 style="font-size: 0.875rem; font-weight: 700; margin-bottom: 12px;">
+          <div class="card income-summary-card">
+            <h3 class="income-summary-title">
               Monthly income summary
             </h3>
             <div class="table-responsive">
@@ -144,11 +144,11 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td style="color: var(--primary); font-weight: 700;">October 2026 &middot; current</td>
-                    <td id="octBookingsCell" class="text-right" style="font-weight: 700;">18</td>
-                    <td id="octGrossCell" class="text-right" style="font-weight: 700;">43,200.00</td>
-                    <td id="octCommCell" class="text-right" style="font-weight: 700;">4,320.00</td>
-                    <td id="octNetCell" class="text-right" style="font-weight: 700;">38,880.00</td>
+                    <td class="row-current-month">October 2026 &middot; current</td>
+                    <td id="octBookingsCell" class="text-right fw-bold">18</td>
+                    <td id="octGrossCell" class="text-right fw-bold">43,200.00</td>
+                    <td id="octCommCell" class="text-right fw-bold">4,320.00</td>
+                    <td id="octNetCell" class="text-right fw-bold">38,880.00</td>
                   </tr>
                   <tr>
                     <td>September 2026</td>
@@ -168,7 +168,7 @@
               </table>
             </div>
           </div>
-          <p class="form-hint" style="margin-bottom: 18px;">
+          <p class="form-hint mb-18">
             Estimates assume a 10% Localnest commission: net = gross &minus; commission. Pending requests, taxes, and other expenses are excluded.
           </p>
         </section>
@@ -199,7 +199,7 @@
               </div>
 
               <div class="form-row-2">
-                <div class="form-group" style="margin-bottom: 4px;">
+                <div class="form-group mb-4">
                   <label for="seasonTypeSelect" class="form-label">Season/Day Type</label>
                   <select id="seasonTypeSelect" class="form-control">
                     <option value="Weekend">Weekend</option>
@@ -208,7 +208,7 @@
                   </select>
                 </div>
 
-                <div class="form-group" style="margin-bottom: 4px;">
+                <div class="form-group mb-4">
                   <label for="seasonalPriceInput" class="form-label">Price Per Night (&#2547;)</label>
                   <input
                     type="number"
@@ -221,12 +221,12 @@
                   />
                 </div>
               </div>
-              <span class="form-hint" style="margin-bottom: 14px;">
+              <span class="form-hint mb-14">
                 Options: Weekend, Holiday, Custom Dates
               </span>
 
               <div class="form-row-2">
-                <div class="form-group" style="margin-bottom: 4px;">
+                <div class="form-group mb-4">
                   <label for="seasonStartDate" class="form-label">Start Date</label>
                   <input
                     type="text"
@@ -238,7 +238,7 @@
                   />
                 </div>
 
-                <div class="form-group" style="margin-bottom: 4px;">
+                <div class="form-group mb-4">
                   <label for="seasonEndDate" class="form-label">End Date</label>
                   <input
                     type="text"
@@ -250,44 +250,44 @@
                   />
                 </div>
               </div>
-              <span class="form-hint" style="margin-bottom: 16px;">
+              <span class="form-hint mb-16">
                 Dates use MM/DD/YYYY. Weekend rates apply to Saturday and Sunday nights in this range.
               </span>
 
-              <button type="submit" class="btn btn-primary" style="margin-bottom: 22px;">
+              <button type="submit" class="btn btn-primary mb-22">
                 Apply Seasonal Price
               </button>
             </form>
 
             <!-- Active Pricing Rules List -->
-            <div style="border-top: 1px solid var(--border-color); padding-top: 16px;">
-              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
-                <span style="font-size: 0.8125rem; font-weight: 700;">Active pricing rules</span>
+            <div class="rules-divider">
+              <div class="section-subrow-tight">
+                <span class="subrow-title">Active pricing rules</span>
                 <span id="seasonalRuleCount" class="card-meta-right">2 rules</span>
               </div>
-              <p class="form-hint" style="margin-top: 0; margin-bottom: 10px;">
+              <p class="form-hint mt-0 mb-10">
                 Srimangal Green Homestay &middot; Base rate &#2547;1,500 / night
               </p>
 
               <div id="seasonalRulesList">
                 <div class="seasonal-rule-item">
                   <div>
-                    <div class="cell-primary" style="font-size: 0.85rem;">Weekend</div>
+                    <div class="cell-primary rule-name">Weekend</div>
                     <div class="cell-secondary">Oct 1 &ndash; Nov 30, 2026 &middot; Sat &amp; Sun</div>
                   </div>
                   <div class="text-right">
-                    <div class="cell-primary" style="font-size: 0.9rem;">&#2547;1,800</div>
+                    <div class="cell-primary rule-price">&#2547;1,800</div>
                     <div class="cell-secondary">/ night</div>
                   </div>
                 </div>
 
                 <div class="seasonal-rule-item">
                   <div>
-                    <div class="cell-primary" style="font-size: 0.85rem;">Holiday</div>
+                    <div class="cell-primary rule-name">Holiday</div>
                     <div class="cell-secondary">Dec 24 &ndash; Dec 31, 2026 &middot; Every night</div>
                   </div>
                   <div class="text-right">
-                    <div class="cell-primary" style="font-size: 0.9rem;">&#2547;2,200</div>
+                    <div class="cell-primary rule-price">&#2547;2,200</div>
                     <div class="cell-secondary">/ night</div>
                   </div>
                 </div>
@@ -307,8 +307,8 @@
             <!-- Instant Booking Toggle Switch -->
             <div class="instant-booking-bar">
               <div>
-                <div style="font-size: 0.8125rem; font-weight: 700;">Allow Instant Booking</div>
-                <div style="font-size: 0.75rem; color: var(--text-muted);">(No manual approval needed)</div>
+                <div class="subrow-title">Allow Instant Booking</div>
+                <div class="subrow-subtitle">(No manual approval needed)</div>
               </div>
               <div class="toggle-wrap">
                 <span id="instantBookingStateText">Off</span>
@@ -324,8 +324,8 @@
             </div>
 
             <!-- Listing Subheader & Pending Badge -->
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-              <span style="font-size: 0.8125rem; font-weight: 700;">Srimangal Green Homestay</span>
+            <div class="section-subrow">
+              <span class="subrow-title">Srimangal Green Homestay</span>
               <span id="hostPendingBadge" class="badge badge-info">3 pending requests</span>
             </div>
 
@@ -349,8 +349,8 @@
                       <span class="cell-secondary">2 guests</span>
                     </td>
                     <td>
-                      <span style="display: block;">Oct 25, 2026</span>
-                      <span style="display: block;">Oct 28, 2026</span>
+                      <span class="d-block">Oct 25, 2026</span>
+                      <span class="d-block">Oct 28, 2026</span>
                       <span class="cell-secondary">2 nights</span>
                     </td>
                     <td>
@@ -375,8 +375,8 @@
                       <span class="cell-secondary">2 guests</span>
                     </td>
                     <td>
-                      <span style="display: block;">Oct 29, 2026</span>
-                      <span style="display: block;">Nov 1, 2026</span>
+                      <span class="d-block">Oct 29, 2026</span>
+                      <span class="d-block">Nov 1, 2026</span>
                       <span class="cell-secondary">2 nights</span>
                     </td>
                     <td>
@@ -401,8 +401,8 @@
                       <span class="cell-secondary">2 guests</span>
                     </td>
                     <td>
-                      <span style="display: block;">Nov 4, 2026</span>
-                      <span style="display: block;">Nov 6, 2026</span>
+                      <span class="d-block">Nov 4, 2026</span>
+                      <span class="d-block">Nov 6, 2026</span>
                       <span class="cell-secondary">2 nights</span>
                     </td>
                     <td>
@@ -423,7 +423,7 @@
               </table>
             </div>
 
-            <p id="instantBookingFootnote" class="form-hint" style="margin-top: 14px;">
+            <p id="instantBookingFootnote" class="form-hint mt-14">
               Instant booking is off. New requests require your approval. Accepting confirms the booking at the negotiated stay total; rejecting declines the request.
             </p>
           </section>

@@ -1,21 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!--
-    ==========================================================================
-    PAGE 7: LOCAL TOUR GUIDE DASHBOARD (guide-dashboard.html)
-    Project: Local Nest - Integrated Homestay & Local Experience Booking Platform
-    Course: CSC 3215: Web Technologies (AIUB)
-    Description:
-    Implements the 3 core Local Tour Guide features from the proposal:
-      7. Custom Tour Bidding (Select open traveler tour requests and submit
-         personalized price offers and tailored itineraries).
-      8. Tour Progress Tracker (Update assigned tour statuses between
-         Scheduled, In Progress, and Completed).
-      9. Guide Portfolio and Verification (Update guiding experience, upload
-         tour photos and tourism certificates for Admin review).
-    ==========================================================================
-  -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Local Tour Guide Dashboard — Localnest</title>
@@ -25,9 +10,6 @@
 <body data-page="guide-dashboard">
 
   <div class="app-shell">
-    <!-- ======================================================================
-         1. LEFT SIDEBAR NAVIGATION
-         ====================================================================== -->
     <aside class="sidebar">
       <div class="sidebar-brand">
         <a href="index.html" class="brand-logo">
@@ -71,11 +53,8 @@
       </div>
     </aside>
 
-    <!-- ======================================================================
-         2. MAIN CONTENT AREA
-         ====================================================================== -->
+    
     <div class="main-wrapper">
-      <!-- Top Header Bar -->
       <header class="topbar">
         <div class="topbar-title">Dashboard</div>
         <div class="topbar-user">
@@ -93,11 +72,6 @@
           </p>
         </div>
 
-        <!-- ==================================================================
-             FEATURE 7: CUSTOM TOUR BIDDING (FULL-WIDTH CARD)
-             Future PHP Note: Insert submitted bids into the TOUR_REQUEST / BID
-             table with guide_user_id, offer_price, and proposed_itinerary.
-             ================================================================== -->
         <section id="customTourBiddingCard" class="card" aria-labelledby="customBiddingHeading">
           <div class="card-header">
             <div>
@@ -109,7 +83,6 @@
             <span id="openRequestsCounter" class="card-meta-right">3 open requests</span>
           </div>
 
-          <!-- Open Requests Table -->
           <div class="table-responsive" style="margin-bottom: 20px;">
             <table class="data-table">
               <thead>
@@ -122,7 +95,6 @@
                 </tr>
               </thead>
               <tbody id="tourBidRequestsBody">
-                <!-- Request 1 (Selected by default) -->
                 <tr
                   class="row-clickable row-selected"
                   data-traveler="Tasnim Zara"
@@ -144,7 +116,6 @@
                   <td class="text-right" style="font-weight: 700;">&#2547;2,000.00</td>
                 </tr>
 
-                <!-- Request 2 -->
                 <tr
                   class="row-clickable"
                   data-traveler="Tanvir Ahmed"
@@ -166,7 +137,7 @@
                   <td class="text-right" style="font-weight: 700;">&#2547;1,500.00</td>
                 </tr>
 
-                <!-- Request 3 -->
+               
                 <tr
                   class="row-clickable"
                   data-traveler="Nusrat Jahan"
@@ -191,7 +162,7 @@
             </table>
           </div>
 
-          <!-- Submit Personalized Offer Form -->
+
           <div>
             <div style="display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 14px;">
               <h3 style="font-size: 0.9rem; font-weight: 700;">Submit Personalized Offer</h3>
@@ -230,14 +201,8 @@ Includes private Chander Gari transport, guiding, and entry fees for 4 travelers
           </div>
         </section>
 
-        <!-- ==================================================================
-             BOTTOM TWO-COLUMN GRID:
-             LEFT: FEATURE 8 — TOUR PROGRESS TRACKER
-             RIGHT: FEATURE 9 — GUIDE PORTFOLIO & VERIFICATION
-             ================================================================== -->
         <div class="grid-2-col">
 
-          <!-- FEATURE 8: TOUR PROGRESS TRACKER -->
           <section id="tourProgressCard" class="card" aria-labelledby="tourProgressHeading">
             <div class="card-header">
               <div>
@@ -273,8 +238,6 @@ Includes private Chander Gari transport, guiding, and entry fees for 4 travelers
                       </div>
                     </td>
                   </tr>
-
-                  <!-- Tour 2 -->
                   <tr>
                     <td style="font-weight: 700;">Ratargul &amp; Bisnakandi Boat Tour</td>
                     <td>Farhan Sadik</td>
@@ -290,8 +253,6 @@ Includes private Chander Gari transport, guiding, and entry fees for 4 travelers
                       </div>
                     </td>
                   </tr>
-
-                  <!-- Tour 3 -->
                   <tr>
                     <td style="font-weight: 700;">Sylheti Seven-Layer Tea &amp; Food Tour</td>
                     <td>Sadia Afrin</td>
@@ -318,8 +279,6 @@ Includes private Chander Gari transport, guiding, and entry fees for 4 travelers
               Choose a status, then select Update to save that tour's progress.
             </p>
           </section>
-
-          <!-- FEATURE 9: GUIDE PORTFOLIO & VERIFICATION -->
           <section id="guidePortfolioCard" class="card" aria-labelledby="guidePortfolioHeading">
             <div class="card-header" style="margin-bottom: 10px;">
               <div>
@@ -327,7 +286,6 @@ Includes private Chander Gari transport, guiding, and entry fees for 4 travelers
               </div>
             </div>
 
-            <!-- Verification Status Line -->
             <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
               <span id="guideVerificationBadge" class="badge badge-verified-green">Verified</span>
               <span id="guideVerificationText" style="font-size: 0.78rem; color: var(--text-muted);">
@@ -341,7 +299,6 @@ Includes private Chander Gari transport, guiding, and entry fees for 4 travelers
                 <textarea id="guideExperienceInput" class="form-control" style="min-height: 82px;" required>Local guide in Sylhet &amp; Chattogram Hill Tracts since 2019. I lead rainforest walks, tea estate tours, and heritage food trails across Bangladesh, guiding in Bangla and English.</textarea>
               </div>
 
-              <!-- Upload Tour Photos -->
               <div class="form-group">
                 <label class="form-label">Upload Tour Photos</label>
                 <div class="file-input-box">
@@ -357,7 +314,6 @@ Includes private Chander Gari transport, guiding, and entry fees for 4 travelers
                 </div>
               </div>
 
-              <!-- Upload Tourism Certificate -->
               <div class="form-group" style="margin-bottom: 6px;">
                 <label class="form-label">Upload Tourism Certificate (PDF/JPG)</label>
                 <div class="file-input-box">

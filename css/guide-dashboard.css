@@ -1,9 +1,3 @@
-/* ==========================================================================
-   GUIDE DASHBOARD STYLESHEET (css/guide-dashboard.css)
-   Used by: guide-dashboard.html
-   Description: Pure CSS styles for the Local Tour Guide Dashboard, including
-   Custom Tour Bidding table, Tour Progress Tracker, and Guide Portfolio.
-   ========================================================================== */
 
 :root {
   --primary: #2563eb;
@@ -53,7 +47,6 @@ button, input, select, textarea {
   color: inherit;
 }
 
-/* Brand Logo & Shell */
 .brand-logo {
   display: inline-flex;
   align-items: center;

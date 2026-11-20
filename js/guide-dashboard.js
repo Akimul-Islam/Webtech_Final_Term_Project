@@ -1,18 +1,4 @@
-/**
- * ============================================================================
- * GUIDE DASHBOARD JAVASCRIPT (js/guide-dashboard.js)
- * Used by: guide-dashboard.html
- * Description:
- * Simple client-side interactivity for:
- *   1. Custom Tour Bidding (select row & validate bid form)
- *   2. Tour Progress Tracker (confirm status update)
- *   3. Guide Portfolio & Verification (validate portfolio submission)
- * ============================================================================
- */
 
-/* --------------------------------------------------------------------------
-   1. CUSTOM TOUR BIDDING
-   -------------------------------------------------------------------------- */
 const requestRows = document.querySelectorAll('#tourBidRequestsBody tr');
 const bidTargetSummary = document.getElementById('bidTargetSummary');
 const bidProposedPrice = document.getElementById('bidProposedPrice');
@@ -21,13 +7,10 @@ const submitTourBidForm = document.getElementById('submitTourBidForm');
 
 for (let i = 0; i < requestRows.length; i++) {
   requestRows[i].addEventListener('click', function () {
-    // Remove highlight from all rows
     for (let j = 0; j < requestRows.length; j++) {
       requestRows[j].classList.remove('row-selected');
       requestRows[j].querySelector('input[type="radio"]').checked = false;
     }
-
-    // Highlight clicked row and check its radio button
     const row = requestRows[i];
     row.classList.add('row-selected');
     row.querySelector('input[type="radio"]').checked = true;
@@ -58,9 +41,6 @@ if (submitTourBidForm) {
   });
 }
 
-/* --------------------------------------------------------------------------
-   2. TOUR PROGRESS TRACKER
-   -------------------------------------------------------------------------- */
 const updateStatusButtons = document.querySelectorAll('.btn-save-tour-status');
 const tourProgressFeedback = document.getElementById('tourProgressFeedback');
 
@@ -75,9 +55,6 @@ for (let i = 0; i < updateStatusButtons.length; i++) {
   });
 }
 
-/* --------------------------------------------------------------------------
-   3. GUIDE PORTFOLIO & VERIFICATION
-   -------------------------------------------------------------------------- */
 const portfolioForm = document.getElementById('guidePortfolioForm');
 const portfolioSubmitHint = document.getElementById('portfolioSubmitHint');
 

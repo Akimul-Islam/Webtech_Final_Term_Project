@@ -83,7 +83,7 @@
             <span id="openRequestsCounter" class="card-meta-right">3 open requests</span>
           </div>
 
-          <div class="table-responsive" style="margin-bottom: 20px;">
+          <div class="table-responsive mb-20">
             <table class="data-table">
               <thead>
                 <tr>
@@ -105,7 +105,7 @@
                   data-itinerary="8:00 AM hotel pickup in Srimangal. Guided Lawachara National Park trail walk, a visit to Madhabpur Lake & Finlay Tea Estate, and traditional lunch at a local restaurant. Return by 3:00 PM.&#10;&#10;Includes private Chander Gari transport, guiding, and entry fees for 4 travelers. Lunch is paid separately."
                 >
                   <td>
-                    <label style="display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-weight: 700; color: var(--primary);">
+                    <label class="request-radio-label">
                       <input type="radio" name="selectedTourRequest" checked />
                       <span class="traveler-name-span">Tasnim Zara</span>
                     </label>
@@ -113,7 +113,7 @@
                   <td>Srimangal, Sylhet</td>
                   <td>Oct 28, 2026</td>
                   <td>4 travelers</td>
-                  <td class="text-right" style="font-weight: 700;">&#2547;2,000.00</td>
+                  <td class="text-right fw-bold">&#2547;2,000.00</td>
                 </tr>
 
                 <tr
@@ -126,7 +126,7 @@
                   data-itinerary="2:00 PM hotel pickup in Cox's Bazar. Scenic Marine Drive tour to Himchari Waterfall and Inani Coral Beach, sunset photography stop, and fresh seafood dinner by the beach. Return by 8:30 PM."
                 >
                   <td>
-                    <label style="display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-weight: 600;">
+                    <label class="request-radio-label">
                       <input type="radio" name="selectedTourRequest" />
                       <span class="traveler-name-span">Tanvir Ahmed</span>
                     </label>
@@ -134,7 +134,7 @@
                   <td>Inani Beach, Cox's Bazar</td>
                   <td>Oct 30, 2026</td>
                   <td>2 travelers</td>
-                  <td class="text-right" style="font-weight: 700;">&#2547;1,500.00</td>
+                  <td class="text-right fw-bold">&#2547;1,500.00</td>
                 </tr>
 
                
@@ -148,7 +148,7 @@
                   data-itinerary="5:00 AM private Chander Gari pickup for 6 travelers from Khagrachari. Konglak Para sunrise viewpoint, Ruilui Para heritage walk, and Hazachora Waterfall visit. Return by 2:30 PM."
                 >
                   <td>
-                    <label style="display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-weight: 600;">
+                    <label class="request-radio-label">
                       <input type="radio" name="selectedTourRequest" />
                       <span class="traveler-name-span">Nusrat Jahan</span>
                     </label>
@@ -156,7 +156,7 @@
                   <td>Sajek Valley, Rangamati</td>
                   <td>Nov 2, 2026</td>
                   <td>6 travelers</td>
-                  <td class="text-right" style="font-weight: 700;">&#2547;3,000.00</td>
+                  <td class="text-right fw-bold">&#2547;3,000.00</td>
                 </tr>
               </tbody>
             </table>
@@ -164,16 +164,16 @@
 
 
           <div>
-            <div style="display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 14px;">
-              <h3 style="font-size: 0.9rem; font-weight: 700;">Submit Personalized Offer</h3>
-              <span id="bidTargetSummary" style="font-size: 0.78rem; color: var(--text-muted);">
+            <div class="bid-summary-row">
+              <h3 class="bid-summary-title">Submit Personalized Offer</h3>
+              <span id="bidTargetSummary" class="bid-summary-target">
                 For Tasnim Zara &middot; Srimangal, Sylhet &middot; Oct 28, 2026 &middot; 4 travelers
               </span>
             </div>
 
-            <form id="submitTourBidForm" style="display: grid; grid-template-columns: 270px 1fr; gap: 20px; align-items: start;" novalidate>
+            <form id="submitTourBidForm" class="bid-form-grid" novalidate>
               <div>
-                <div class="form-group" style="margin-bottom: 6px;">
+                <div class="form-group mb-6">
                   <label for="bidProposedPrice" class="form-label">Proposed Price (&#2547;)</label>
                   <input
                     type="number"
@@ -185,7 +185,7 @@
                     required
                   />
                 </div>
-                <span id="bidGroupHelperText" class="form-hint" style="margin-bottom: 14px;">
+                <span id="bidGroupHelperText" class="form-hint mb-14">
                   Total for all 4 travelers &middot; BDT (&#2547;)
                 </span>
                 <button type="submit" class="btn btn-primary">Send Bid</button>
@@ -193,7 +193,7 @@
 
               <div>
                 <label for="bidProposedItinerary" class="form-label">Proposed Itinerary &amp; Activity Details</label>
-                <textarea id="bidProposedItinerary" class="form-control" style="min-height: 112px;" required>8:00 AM hotel pickup in Srimangal. Guided Lawachara National Park trail walk, a visit to Madhabpur Lake &amp; Finlay Tea Estate, and traditional lunch at a local restaurant. Return by 3:00 PM.
+                <textarea id="bidProposedItinerary" class="form-control bid-itinerary-textarea" required>8:00 AM hotel pickup in Srimangal. Guided Lawachara National Park trail walk, a visit to Madhabpur Lake &amp; Finlay Tea Estate, and traditional lunch at a local restaurant. Return by 3:00 PM.
 
 Includes private Chander Gari transport, guiding, and entry fees for 4 travelers. Lunch is paid separately.</textarea>
               </div>
@@ -224,12 +224,12 @@ Includes private Chander Gari transport, guiding, and entry fees for 4 travelers
                 <tbody id="tourProgressTableBody">
                   <!-- Tour 1 -->
                   <tr>
-                    <td style="font-weight: 700;">Lawachara Rainforest Trail</td>
+                    <td class="fw-bold">Lawachara Rainforest Trail</td>
                     <td>MD. Akimul Islam</td>
                     <td>Oct 25, 2026</td>
                     <td>
                       <div class="action-btns">
-                        <select class="form-control tour-status-select" style="padding: 5px 8px; font-size: 0.78rem; width: 120px;">
+                        <select class="form-control tour-status-select">
                           <option value="Scheduled" selected>Scheduled</option>
                           <option value="In Progress">In Progress</option>
                           <option value="Completed">Completed</option>
@@ -239,12 +239,12 @@ Includes private Chander Gari transport, guiding, and entry fees for 4 travelers
                     </td>
                   </tr>
                   <tr>
-                    <td style="font-weight: 700;">Ratargul &amp; Bisnakandi Boat Tour</td>
+                    <td class="fw-bold">Ratargul &amp; Bisnakandi Boat Tour</td>
                     <td>Farhan Sadik</td>
                     <td>Oct 23, 2026</td>
                     <td>
                       <div class="action-btns">
-                        <select class="form-control tour-status-select" style="padding: 5px 8px; font-size: 0.78rem; width: 120px;">
+                        <select class="form-control tour-status-select">
                           <option value="Scheduled">Scheduled</option>
                           <option value="In Progress" selected>In Progress</option>
                           <option value="Completed">Completed</option>
@@ -254,12 +254,12 @@ Includes private Chander Gari transport, guiding, and entry fees for 4 travelers
                     </td>
                   </tr>
                   <tr>
-                    <td style="font-weight: 700;">Sylheti Seven-Layer Tea &amp; Food Tour</td>
+                    <td class="fw-bold">Sylheti Seven-Layer Tea &amp; Food Tour</td>
                     <td>Sadia Afrin</td>
                     <td>Oct 21, 2026</td>
                     <td>
                       <div class="action-btns">
-                        <select class="form-control tour-status-select" style="padding: 5px 8px; font-size: 0.78rem; width: 120px;">
+                        <select class="form-control tour-status-select">
                           <option value="Scheduled">Scheduled</option>
                           <option value="In Progress">In Progress</option>
                           <option value="Completed" selected>Completed</option>
@@ -272,7 +272,7 @@ Includes private Chander Gari transport, guiding, and entry fees for 4 travelers
               </table>
             </div>
 
-            <p class="form-hint" style="margin-top: 16px;">
+            <p class="form-hint mt-16">
               Status options: Scheduled, In Progress, Completed.
             </p>
             <p id="tourProgressFeedback" class="form-hint">
@@ -280,15 +280,15 @@ Includes private Chander Gari transport, guiding, and entry fees for 4 travelers
             </p>
           </section>
           <section id="guidePortfolioCard" class="card" aria-labelledby="guidePortfolioHeading">
-            <div class="card-header" style="margin-bottom: 10px;">
+            <div class="card-header mb-10">
               <div>
                 <h2 id="guidePortfolioHeading" class="card-title">Guide Portfolio &amp; Verification</h2>
               </div>
             </div>
 
-            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
+            <div class="guide-verification-row">
               <span id="guideVerificationBadge" class="badge badge-verified-green">Verified</span>
-              <span id="guideVerificationText" style="font-size: 0.78rem; color: var(--text-muted);">
+              <span id="guideVerificationText" class="guide-verification-text">
                 Your guide profile is approved.
               </span>
             </div>
@@ -296,7 +296,7 @@ Includes private Chander Gari transport, guiding, and entry fees for 4 travelers
             <form id="guidePortfolioForm" novalidate>
               <div class="form-group">
                 <label for="guideExperienceInput" class="form-label">Previous Guiding Experience</label>
-                <textarea id="guideExperienceInput" class="form-control" style="min-height: 82px;" required>Local guide in Sylhet &amp; Chattogram Hill Tracts since 2019. I lead rainforest walks, tea estate tours, and heritage food trails across Bangladesh, guiding in Bangla and English.</textarea>
+                <textarea id="guideExperienceInput" class="form-control guide-experience-textarea" required>Local guide in Sylhet &amp; Chattogram Hill Tracts since 2019. I lead rainforest walks, tea estate tours, and heritage food trails across Bangladesh, guiding in Bangla and English.</textarea>
               </div>
 
               <div class="form-group">
@@ -308,13 +308,13 @@ Includes private Chander Gari transport, guiding, and entry fees for 4 travelers
                     id="tourPhotosInput"
                     accept="image/jpeg,image/png"
                     multiple
-                    style="display: none;"
+                    class="is-hidden"
                   />
                   <span id="tourPhotosFileName" class="file-input-name">3 files selected</span>
                 </div>
               </div>
 
-              <div class="form-group" style="margin-bottom: 6px;">
+              <div class="form-group mb-6">
                 <label class="form-label">Upload Tourism Certificate (PDF/JPG)</label>
                 <div class="file-input-box">
                   <label for="tourismCertInput" class="file-input-btn">Choose file</label>
@@ -322,18 +322,18 @@ Includes private Chander Gari transport, guiding, and entry fees for 4 travelers
                     type="file"
                     id="tourismCertInput"
                     accept=".pdf,image/jpeg,image/png"
-                    style="display: none;"
+                    class="is-hidden"
                   />
                   <span id="tourismCertFileName" class="file-input-name">tourism-certificate.pdf</span>
                 </div>
               </div>
 
-              <span class="form-hint" style="margin-bottom: 16px;">
+              <span class="form-hint mb-16">
                 Photos: JPG/PNG. Certificate: PDF/JPG. Max 5 MB per file.
               </span>
 
               <button type="submit" class="btn btn-primary">Submit to Admin</button>
-              <span id="portfolioSubmitHint" class="form-hint" style="margin-top: 8px;">
+              <span id="portfolioSubmitHint" class="form-hint mt-8">
                 Portfolio changes will be sent to the admin for review.
               </span>
             </form>

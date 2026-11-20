@@ -7,605 +7,6 @@
   <title>Admin Panel — Localnest</title>
   <link rel="stylesheet" href="css/admin-dashboard.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
-  <style>
-    :root {
-      --primary: #2563eb;
-      --primary-dark: #1d4ed8;
-      --text-main: #17243a;
-      --text-secondary: #475569;
-      --text-muted: #64748b;
-      --border: #e2e8f0;
-      --background: #f5f7fb;
-      --white: #ffffff;
-      --success: #15803d;
-      --success-bg: #dcfce7;
-      --danger: #dc2626;
-      --danger-bg: #fee2e2;
-      --warning: #b45309;
-      --warning-bg: #fef3c7;
-    }
-
-    body[data-page="admin-dashboard"] {
-      margin: 0;
-      background: var(--background);
-      color: var(--text-main);
-      font-family: "Segoe UI", Arial, sans-serif;
-      font-size: 14px;
-    }
-
-    body[data-page="admin-dashboard"] * {
-      box-sizing: border-box;
-    }
-
-    body[data-page="admin-dashboard"] .app-shell {
-      display: flex;
-      min-height: 100vh;
-    }
-
-    body[data-page="admin-dashboard"] .sidebar {
-      width: 250px;
-      min-width: 250px;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      background: #17243a;
-      color: #ffffff;
-      padding: 25px 16px;
-    }
-
-    body[data-page="admin-dashboard"] .sidebar-brand {
-      padding: 0 12px 35px;
-    }
-
-    body[data-page="admin-dashboard"] .brand-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: #ffffff;
-      text-decoration: none;
-      font-size: 23px;
-      font-weight: 750;
-    }
-
-    body[data-page="admin-dashboard"] .brand-logo img {
-      object-fit: contain;
-    }
-
-    body[data-page="admin-dashboard"] .sidebar-nav {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
-
-    body[data-page="admin-dashboard"] .sidebar-link {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      padding: 13px 15px;
-      border-radius: 8px;
-      color: #cbd5e1;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 500;
-      transition: background 0.2s ease, color 0.2s ease;
-    }
-
-    body[data-page="admin-dashboard"] .sidebar-link i {
-      width: 18px;
-      font-size: 16px;
-      text-align: center;
-    }
-
-    body[data-page="admin-dashboard"] .sidebar-link:hover,
-    body[data-page="admin-dashboard"] .sidebar-link.active {
-      background: #263b5c;
-      color: #ffffff;
-    }
-
-    body[data-page="admin-dashboard"] .sidebar-link.active {
-      border-left: 3px solid #60a5fa;
-    }
-
-    body[data-page="admin-dashboard"] .sidebar-footer {
-      margin-top: auto;
-      padding-top: 30px;
-    }
-
-    body[data-page="admin-dashboard"] .main-wrapper {
-      flex: 1;
-      min-width: 0;
-    }
-
-    body[data-page="admin-dashboard"] .topbar {
-      min-height: 76px;
-      padding: 15px 35px;
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    body[data-page="admin-dashboard"] .topbar-title {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-
-    body[data-page="admin-dashboard"] .topbar-user {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-    }
-
-    body[data-page="admin-dashboard"] .topbar-user-name {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-main);
-    }
-
-    body[data-page="admin-dashboard"] .avatar-circle {
-      width: 38px;
-      height: 38px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: #dbeafe;
-      color: var(--primary);
-      font-size: 13px;
-      font-weight: 750;
-    }
-
-    body[data-page="admin-dashboard"] .dashboard-content {
-      max-width: 1600px;
-      margin: 0 auto;
-      padding: 30px 35px 45px;
-    }
-
-    body[data-page="admin-dashboard"] .page-header {
-      margin-bottom: 25px;
-    }
-
-    body[data-page="admin-dashboard"] .page-title {
-      margin: 0 0 8px;
-      color: var(--text-main);
-      font-size: 27px;
-      font-weight: 750;
-    }
-
-    body[data-page="admin-dashboard"] .page-subtitle {
-      margin: 0;
-      color: var(--text-muted);
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    body[data-page="admin-dashboard"] .card {
-      margin-bottom: 25px;
-      padding: 24px;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      box-shadow: 0 3px 12px rgba(15, 23, 42, 0.035);
-    }
-
-    body[data-page="admin-dashboard"] .card-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 15px;
-      margin-bottom: 22px;
-    }
-
-    body[data-page="admin-dashboard"] .card-title {
-      margin: 0 0 7px;
-      color: var(--text-main);
-      font-size: 17px;
-      font-weight: 750;
-    }
-
-    body[data-page="admin-dashboard"] .card-subtitle {
-      margin: 0;
-      color: var(--text-muted);
-      font-size: 12px;
-      line-height: 1.6;
-    }
-
-    body[data-page="admin-dashboard"] .card-meta-right {
-      display: inline-flex;
-      align-items: center;
-      white-space: nowrap;
-      padding: 6px 11px;
-      border-radius: 20px;
-      background: #eff6ff;
-      color: var(--primary);
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    body[data-page="admin-dashboard"] .commission-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: end;
-      gap: 25px;
-    }
-
-    body[data-page="admin-dashboard"] .form-label {
-      display: block;
-      margin-bottom: 9px;
-      color: var(--text-main);
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    body[data-page="admin-dashboard"] .commission-input-group {
-      display: flex;
-      align-items: stretch;
-      gap: 10px;
-    }
-
-    body[data-page="admin-dashboard"] .form-control {
-      width: 100%;
-      min-width: 0;
-      height: 43px;
-      padding: 10px 12px;
-      border: 1px solid #cbd5e1;
-      border-radius: 7px;
-      background: #ffffff;
-      color: var(--text-main);
-      font-size: 13px;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    body[data-page="admin-dashboard"] .form-control:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
-    }
-
-    body[data-page="admin-dashboard"] .btn {
-      min-height: 37px;
-      padding: 9px 13px;
-      border: 1px solid transparent;
-      border-radius: 7px;
-      font-family: inherit;
-      font-size: 11px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s, border-color 0.2s, transform 0.2s;
-    }
-
-    body[data-page="admin-dashboard"] .btn:hover {
-      transform: translateY(-1px);
-    }
-
-    body[data-page="admin-dashboard"] .btn-primary {
-      padding: 11px 18px;
-      background: var(--primary);
-      color: #ffffff;
-      white-space: nowrap;
-    }
-
-    body[data-page="admin-dashboard"] .btn-primary:hover {
-      background: var(--primary-dark);
-    }
-
-    body[data-page="admin-dashboard"] .commission-preview-box {
-      min-height: 75px;
-      padding: 15px;
-      border: 1px solid #bfdbfe;
-      border-radius: 8px;
-      background: #eff6ff;
-      line-height: 1.6;
-    }
-
-    body[data-page="admin-dashboard"] .form-hint {
-      color: var(--text-muted);
-      font-size: 11px;
-      line-height: 1.6;
-    }
-
-    body[data-page="admin-dashboard"] .table-responsive {
-      width: 100%;
-      overflow-x: auto;
-    }
-
-    body[data-page="admin-dashboard"] .data-table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-      white-space: nowrap;
-    }
-
-    body[data-page="admin-dashboard"] .data-table th {
-      padding: 13px 14px;
-      background: #f8fafc;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      color: #475569;
-      font-size: 10px;
-      font-weight: 750;
-      text-transform: uppercase;
-      letter-spacing: 0.45px;
-    }
-
-    body[data-page="admin-dashboard"] .data-table td {
-      padding: 15px 14px;
-      border-bottom: 1px solid #edf0f5;
-      color: var(--text-secondary);
-      font-size: 11px;
-      vertical-align: middle;
-    }
-
-    body[data-page="admin-dashboard"] .data-table tbody tr:last-child td {
-      border-bottom: none;
-    }
-
-    body[data-page="admin-dashboard"] .cell-primary,
-    body[data-page="admin-dashboard"] .cell-secondary {
-      display: block;
-    }
-
-    body[data-page="admin-dashboard"] .cell-primary {
-      margin-bottom: 5px;
-      color: var(--text-main);
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    body[data-page="admin-dashboard"] .cell-secondary {
-      color: var(--text-muted);
-      font-size: 10px;
-    }
-
-    body[data-page="admin-dashboard"] .badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 5px 9px;
-      border-radius: 20px;
-      font-size: 10px;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    body[data-page="admin-dashboard"] .badge-role {
-      background: #eff6ff;
-      color: var(--primary);
-    }
-
-    body[data-page="admin-dashboard"] .badge-pending {
-      background: var(--warning-bg);
-      color: var(--warning);
-    }
-
-    body[data-page="admin-dashboard"] .badge-info {
-      background: #dbeafe;
-      color: #1d4ed8;
-    }
-
-    body[data-page="admin-dashboard"] .preview-doc-link {
-      color: var(--primary);
-      font-size: 11px;
-      font-weight: 650;
-      text-decoration: none !important;
-    }
-
-    body[data-page="admin-dashboard"] .preview-doc-link:hover {
-      color: var(--primary-dark);
-      text-decoration: underline !important;
-    }
-
-    body[data-page="admin-dashboard"] .action-btns {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-    }
-
-    body[data-page="admin-dashboard"] .btn-accept {
-      background: var(--success-bg);
-      color: var(--success);
-    }
-
-    body[data-page="admin-dashboard"] .btn-accept:hover {
-      background: #bbf7d0;
-    }
-
-    body[data-page="admin-dashboard"] .btn-reject {
-      background: var(--danger-bg);
-      color: var(--danger);
-    }
-
-    body[data-page="admin-dashboard"] .btn-reject:hover {
-      background: #fecaca;
-    }
-
-    body[data-page="admin-dashboard"] .dispute-split-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
-      gap: 22px;
-      align-items: start;
-    }
-
-    body[data-page="admin-dashboard"] .dispute-split-grid h3 {
-      color: var(--text-main);
-    }
-
-    body[data-page="admin-dashboard"] .row-clickable {
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    body[data-page="admin-dashboard"] .row-clickable:hover {
-      background: #f8fafc;
-    }
-
-    body[data-page="admin-dashboard"] .row-selected {
-      background: #eff6ff;
-      border-left: 3px solid var(--primary) !important;
-    }
-
-    body[data-page="admin-dashboard"] .dispute-detail-card {
-      padding: 19px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: #ffffff;
-    }
-
-    body[data-page="admin-dashboard"] .complaint-box {
-      margin: 16px 0;
-      padding: 13px;
-      border: 1px solid #bfdbfe;
-      border-left: 3px solid var(--primary);
-      border-radius: 7px;
-      background: #f8fbff;
-    }
-
-    body[data-page="admin-dashboard"] .saved-conv-box {
-      max-height: 230px;
-      overflow-y: auto;
-      padding: 12px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: #f8fafc;
-      scrollbar-width: thin;
-    }
-
-    body[data-page="admin-dashboard"] .saved-msg-item {
-      margin-bottom: 10px;
-      padding: 11px;
-      border: 1px solid #e5eaf1;
-      border-radius: 7px;
-      background: #ffffff;
-      color: var(--text-secondary);
-      font-size: 11px;
-      line-height: 1.6;
-    }
-
-    body[data-page="admin-dashboard"] .saved-msg-item:last-child {
-      margin-bottom: 0;
-    }
-
-    body[data-page="admin-dashboard"] .btn-block {
-      width: 100%;
-      min-height: 40px;
-    }
-
-    body[data-page="admin-dashboard"] .btn-outline-primary {
-      border: 1px solid #bfdbfe;
-      background: #eff6ff;
-      color: var(--primary);
-    }
-
-    body[data-page="admin-dashboard"] .btn-outline-primary:hover {
-      border-color: var(--primary);
-      background: #dbeafe;
-    }
-
-    body[data-page="admin-dashboard"] button:focus-visible,
-    body[data-page="admin-dashboard"] a:focus-visible {
-      outline: 3px solid rgba(37, 99, 235, 0.3);
-      outline-offset: 2px;
-    }
-
-    @media (max-width: 1100px) {
-      body[data-page="admin-dashboard"] .sidebar {
-        width: 220px;
-        min-width: 220px;
-      }
-
-      body[data-page="admin-dashboard"] .dashboard-content {
-        padding: 25px 22px;
-      }
-
-      body[data-page="admin-dashboard"] .dispute-split-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 768px) {
-      body[data-page="admin-dashboard"] .app-shell {
-        flex-direction: column;
-      }
-
-      body[data-page="admin-dashboard"] .sidebar {
-        width: 100%;
-        min-width: 0;
-        min-height: auto;
-        padding: 15px;
-      }
-
-      body[data-page="admin-dashboard"] .sidebar-brand {
-        padding: 0 8px 15px;
-      }
-
-      body[data-page="admin-dashboard"] .sidebar-nav {
-        flex-direction: row;
-        flex-wrap: wrap;
-      }
-
-      body[data-page="admin-dashboard"] .sidebar-link {
-        padding: 10px;
-        font-size: 11px;
-      }
-
-      body[data-page="admin-dashboard"] .sidebar-footer {
-        padding-top: 10px;
-      }
-
-      body[data-page="admin-dashboard"] .topbar {
-        padding: 15px 20px;
-      }
-
-      body[data-page="admin-dashboard"] .dashboard-content {
-        padding: 22px 16px;
-      }
-
-      body[data-page="admin-dashboard"] .commission-grid {
-        grid-template-columns: 1fr;
-      }
-
-      body[data-page="admin-dashboard"] .card {
-        padding: 18px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      body[data-page="admin-dashboard"] .topbar {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      body[data-page="admin-dashboard"] .topbar-user {
-        flex-wrap: wrap;
-      }
-
-      body[data-page="admin-dashboard"] .page-title {
-        font-size: 23px;
-      }
-
-      body[data-page="admin-dashboard"] .card-header {
-        flex-direction: column;
-      }
-
-      body[data-page="admin-dashboard"] .commission-input-group {
-        flex-direction: column;
-      }
-
-      body[data-page="admin-dashboard"] .action-btns {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      body[data-page="admin-dashboard"] .action-btns .btn {
-        width: 100%;
-      }
-    }
-  </style>
 </head>
 
 <body data-page="admin-dashboard">
@@ -713,18 +114,18 @@
             </div>
 
             <div class="commission-preview-box">
-              <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 4px;">
+              <div class="commission-preview-label">
                 Automatic calculation preview
               </div>
 
-              <div id="commissionPreviewText" style="font-size: 0.85rem; font-weight: 700; color: var(--text-main);">
+              <div id="commissionPreviewText" class="commission-preview-value">
                 Example &#2547;2,000 Booking &rarr; Platform Fee: &#2547;200 | Host/Guide Net Earnings: &#2547;1,800
               </div>
             </div>
 
           </form>
 
-          <p id="currentRateCaption" class="form-hint" style="margin-top: 10px;">
+          <p id="currentRateCaption" class="form-hint mt-10">
             Current rate: 10% &middot; Applied to new bookings after the rate is updated.
           </p>
 
@@ -907,7 +308,7 @@
           <div class="dispute-split-grid">
 
             <div>
-              <h3 style="font-size: 0.825rem; font-weight: 700; margin-bottom: 10px;">
+              <h3 class="dispute-subhead">
                 Active disputes
               </h3>
 
@@ -925,10 +326,10 @@
 
                   <tbody id="disputesTableBody">
 
-                    <tr class="row-clickable row-selected" data-dispute-id="DSP-1042" style="border-left: 3px solid var(--primary);">
+                    <tr class="row-clickable row-selected" data-dispute-id="DSP-1042">
                       <td>
-                        <span class="cell-primary" style="color: var(--primary);">DSP-1042</span>
-                        <span class="cell-secondary dispute-selected-tag" style="color: var(--primary);">Selected</span>
+                        <span class="cell-primary dispute-id-text">DSP-1042</span>
+                        <span class="cell-secondary dispute-selected-tag">Selected</span>
                       </td>
 
                       <td>BK-2081</td>
@@ -977,15 +378,15 @@
                 </table>
               </div>
 
-              <p id="disputeTableFootnote" class="form-hint" style="margin-top: 12px;">
+              <p id="disputeTableFootnote" class="form-hint mt-12">
                 The selected dispute's booking details and saved conversation are shown alongside this table. No resolution has been recorded.
               </p>
             </div>
 
             <div class="dispute-detail-card">
 
-              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-                <h3 id="detailDisputeId" style="font-size: 0.95rem; font-weight: 800;">
+              <div class="dispute-detail-header">
+                <h3 id="detailDisputeId" class="dispute-detail-id">
                   DSP-1042
                 </h3>
 
@@ -994,34 +395,34 @@
                 </span>
               </div>
 
-              <div id="detailBookingTitle" style="font-size: 0.8125rem; font-weight: 700; color: var(--primary); margin-bottom: 3px;">
+              <div id="detailBookingTitle" class="dispute-booking-title">
                 BK-2081 &middot; Srimangal Green Homestay
               </div>
 
-              <div id="detailBookingMeta" style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 2px;">
+              <div id="detailBookingMeta" class="dispute-booking-meta">
                 Oct 20&ndash;22, 2026 &middot; Booking total: &#2547;2,400.00
               </div>
 
-              <div id="detailParties" style="font-size: 0.78rem; color: var(--text-secondary);">
+              <div id="detailParties" class="dispute-parties">
                 Tanvir Ahmed (Traveler) &middot; Meherunnissa Ponni (Host)
               </div>
 
               <div class="complaint-box">
-                <div style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 2px;">
+                <div class="complaint-label">
                   Complaint reason
                 </div>
 
-                <div id="detailComplaintTitle" style="font-size: 0.8125rem; font-weight: 700; margin-bottom: 4px;">
+                <div id="detailComplaintTitle" class="complaint-title">
                   Airport pickup not provided
                 </div>
 
-                <p id="detailComplaintDesc" style="font-size: 0.78rem; color: var(--text-secondary);">
+                <p id="detailComplaintDesc" class="complaint-desc">
                   Traveler requests &#2547;500 for a taxi. Host is reviewing the updated arrival time and driver records.
                 </p>
               </div>
 
-              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
-                <span style="font-size: 0.78rem; font-weight: 700;">
+              <div class="saved-conv-header">
+                <span class="saved-conv-title">
                   Saved negotiation conversation
                 </span>
 
@@ -1033,11 +434,11 @@
               <div id="detailMessagesBox" class="saved-conv-box">
 
                 <div class="saved-msg-item">
-                  <div style="font-weight: 700;">
+                  <div class="saved-msg-author">
                     Tanvir Ahmed &middot; Traveler
                   </div>
 
-                  <div style="font-size: 0.7rem; color: var(--text-muted); margin-bottom: 4px;">
+                  <div class="saved-msg-time">
                     Oct 22 &middot; 09:15
                   </div>
 
@@ -1047,11 +448,11 @@
                 </div>
 
                 <div class="saved-msg-item">
-                  <div style="font-weight: 700;">
+                  <div class="saved-msg-author">
                     Meherunnissa Ponni &middot; Host
                   </div>
 
-                  <div style="font-size: 0.7rem; color: var(--text-muted); margin-bottom: 4px;">
+                  <div class="saved-msg-time">
                     Oct 22 &middot; 10:02
                   </div>
 
@@ -1061,11 +462,11 @@
                 </div>
 
                 <div class="saved-msg-item">
-                  <div style="font-weight: 700;">
+                  <div class="saved-msg-author">
                     Tanvir Ahmed &middot; Traveler
                   </div>
 
-                  <div style="font-size: 0.7rem; color: var(--text-muted); margin-bottom: 4px;">
+                  <div class="saved-msg-time">
                     Oct 22 &middot; 10:18
                   </div>
 
@@ -1075,11 +476,11 @@
                 </div>
 
                 <div class="saved-msg-item">
-                  <div style="font-weight: 700;">
+                  <div class="saved-msg-author">
                     Meherunnissa Ponni &middot; Host
                   </div>
 
-                  <div style="font-size: 0.7rem; color: var(--text-muted); margin-bottom: 4px;">
+                  <div class="saved-msg-time">
                     Oct 22 &middot; 10:40
                   </div>
 
@@ -1090,11 +491,11 @@
 
               </div>
 
-              <div style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 12px;">
+              <div class="saved-conv-note">
                 &#8964; More saved messages below &middot; Read-only history
               </div>
 
-              <div style="display: flex; flex-direction: column; gap: 8px;">
+              <div class="dispute-actions-col">
 
                 <button type="button" id="resolveTravelerBtn" class="btn btn-outline-primary btn-block">
                   Resolve for Traveler (Refund)
@@ -1106,7 +507,7 @@
 
               </div>
 
-              <p id="disputeResolutionNote" class="form-hint" style="margin-top: 10px;">
+              <p id="disputeResolutionNote" class="form-hint mt-10">
                 Review both parties' evidence before recording a final decision.
               </p>
 

@@ -518,6 +518,110 @@ button, input, select {
   transform: translateX(20px);
 }
 
+.analytics-section {
+  margin-bottom: 24px;
+}
+
+.analytics-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.income-summary-card {
+  margin-bottom: 6px;
+  padding: 18px 22px;
+}
+
+.income-summary-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.row-current-month {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.fw-bold {
+  font-weight: 700;
+}
+
+.d-block {
+  display: block;
+}
+
+.mb-4 {
+  margin-bottom: 4px;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.mb-14 {
+  margin-bottom: 14px;
+}
+
+.mb-16 {
+  margin-bottom: 16px;
+}
+
+.mb-18 {
+  margin-bottom: 18px;
+}
+
+.mb-22 {
+  margin-bottom: 22px;
+}
+
+.mt-0 {
+  margin-top: 0;
+}
+
+.mt-14 {
+  margin-top: 14px;
+}
+
+.rules-divider {
+  border-top: 1px solid var(--border-color);
+  padding-top: 16px;
+}
+
+.section-subrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.section-subrow-tight {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.subrow-title {
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.subrow-subtitle {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.rule-name {
+  font-size: 0.85rem;
+}
+
+.rule-price {
+  font-size: 0.9rem;
+}
+
 @media (max-width: 1024px) {
   .grid-2-col {
     grid-template-columns: 1fr;

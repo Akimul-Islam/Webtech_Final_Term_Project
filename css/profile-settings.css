@@ -122,9 +122,10 @@ button, input {
   border-radius: var(--radius-md);
 }
 
-.sidebar-link svg {
+.sidebar-link i {
   width: 17px;
-  height: 17px;
+  text-align: center;
+  font-size: 0.95rem;
 }
 
 .sidebar-link:hover {

@@ -235,11 +235,10 @@ button, input, select {
   align-items: center;
 }
 
-.input-with-icon svg {
+.input-with-icon i {
   position: absolute;
   left: 11px;
-  width: 16px;
-  height: 16px;
+  font-size: 0.95rem;
   color: var(--text-muted);
   pointer-events: none;
 }
@@ -309,9 +308,8 @@ button, input, select {
   font-size: 0.8125rem;
 }
 
-.listing-thumb svg {
-  width: 28px;
-  height: 28px;
+.listing-thumb i {
+  font-size: 1.75rem;
   color: #94a3b8;
 }
 

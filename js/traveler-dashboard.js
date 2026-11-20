@@ -1,15 +1,3 @@
-/**
- * ============================================================================
- * TRAVELER DASHBOARD JAVASCRIPT (js/traveler-dashboard.js)
- * Used by: traveler-dashboard.html
- * Description:
- * Implements the 3 core JavaScript features for the Traveler Dashboard:
- *   1. Smart Itinerary Builder (DOM manipulation to add/remove items)
- *   2. Split Cost Calculator (Calculates Total Trip Cost & Cost Per Person)
- *   3. AJAX Booking Negotiation (Adds message & offer without page reload)
- * ============================================================================
- */
-
 const timeline = document.getElementById('itineraryTimeline');
 const addItineraryForm = document.getElementById('addItineraryForm');
 const savedListingSelect = document.getElementById('savedListingSelect');
@@ -21,10 +9,7 @@ const participantsInput = document.getElementById('participantsInput');
 const totalTripCostDisplay = document.getElementById('totalTripCostDisplay');
 const costPerPersonDisplay = document.getElementById('costPerPersonDisplay');
 
-/* --------------------------------------------------------------------------
-   FEATURE 3: SPLIT COST CALCULATOR
-   Calculates Total Cost and Cost Per Person (৳) whenever numbers change.
-   -------------------------------------------------------------------------- */
+
 function calculateSplitCost() {
   const homestaysTotal = parseFloat(homestaysTotalInput.value) || 0;
   const toursTotal = parseFloat(toursTotalInput.value) || 0;
@@ -41,7 +26,6 @@ function calculateSplitCost() {
   costPerPersonDisplay.textContent = perPerson.toFixed(2);
 }
 
-// Recalculate totals from the items currently in the itinerary list
 function updateItineraryTotals() {
   const items = timeline.querySelectorAll('.itinerary-item');
   let homestaySum = 0;
@@ -63,15 +47,10 @@ function updateItineraryTotals() {
   calculateSplitCost();
 }
 
-// Listen for manual changes in the Split Cost Calculator inputs
 homestaysTotalInput.addEventListener('input', calculateSplitCost);
 toursTotalInput.addEventListener('input', calculateSplitCost);
 participantsInput.addEventListener('input', calculateSplitCost);
 
-/* --------------------------------------------------------------------------
-   FEATURE 1: SMART ITINERARY BUILDER (DOM MANIPULATION)
-   Adds new items to the itinerary list and removes items when clicked.
-   -------------------------------------------------------------------------- */
 function attachRemoveEvent(button) {
   button.addEventListener('click', function () {
     const itemRow = button.closest('.itinerary-item');
@@ -82,18 +61,15 @@ function attachRemoveEvent(button) {
   });
 }
 
-// Attach remove events to initial items
 const removeButtons = document.querySelectorAll('.btn-remove-itinerary');
 for (let i = 0; i < removeButtons.length; i++) {
   attachRemoveEvent(removeButtons[i]);
 }
 
-// Add new item when "+ Add to Itinerary" is clicked
 if (addItineraryForm) {
   addItineraryForm.addEventListener('submit', function (event) {
     event.preventDefault();
 
-    // Option value format: "Title|Type|Details|Price"
     const parts = savedListingSelect.value.split('|');
     const title = parts[0];
     const type = parts[1];
@@ -103,7 +79,6 @@ if (addItineraryForm) {
 
     const badgeClass = type === 'Homestay' ? 'badge-info' : 'badge-neutral';
 
-    // Create new itinerary row element
     const newItem = document.createElement('div');
     newItem.className = 'itinerary-item';
     newItem.setAttribute('data-day', dayNumber);
@@ -124,18 +99,12 @@ if (addItineraryForm) {
 
     timeline.appendChild(newItem);
 
-    // Attach remove button listener and recalculate totals
     const newRemoveBtn = newItem.querySelector('.btn-remove-itinerary');
     attachRemoveEvent(newRemoveBtn);
     updateItineraryTotals();
   });
 }
 
-/* --------------------------------------------------------------------------
-   FEATURE 2: AJAX BOOKING NEGOTIATION
-   Sends the traveler's message and offer price (৳) into the chat box
-   asynchronously without reloading the page.
-   -------------------------------------------------------------------------- */
 const ajaxForm = document.getElementById('ajaxNegotiationForm');
 const messageInput = document.getElementById('negotiationMessageInput');
 const offerInput = document.getElementById('negotiationOfferInput');
@@ -152,7 +121,6 @@ if (ajaxForm) {
       return;
     }
 
-    // Create new outgoing message bubble in the chat container
     const newBubble = document.createElement('div');
     newBubble.className = 'chat-bubble-wrap outgoing';
     newBubble.innerHTML =
@@ -165,7 +133,6 @@ if (ajaxForm) {
     chatMessagesContainer.appendChild(newBubble);
     chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
 
-    // Clear message input after sending
     messageInput.value = '';
   });
 }

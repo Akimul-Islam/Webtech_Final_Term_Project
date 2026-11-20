@@ -1,18 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!--
-    ==========================================================================
-    PAGE 1: PUBLIC HOMEPAGE (index.html)
-    Project: Local Nest - Integrated Homestay & Local Experience Booking Platform
-    Course: CSC 3215: Web Technologies (AIUB)
-    Description:
-    The public landing page where visitors can search and filter verified local
-    homestays and guided tours by destination, date, and category.
-    Built with pure HTML5, styled with css/style.css, and made interactive
-    using js/main.js (no external frameworks).
-    ==========================================================================
-  -->
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Localnest — Find Local Homestays &amp; Custom Guided Tours</title>
@@ -20,12 +9,6 @@
 </head>
 <body data-page="home">
 
-  <!-- ========================================================================
-       1. TOP NAVIGATION BAR
-       Contains the brand logo, category filter links, and Login/Register links.
-       Future PHP Note: If $_SESSION['user_id'] is set, replace Login/Register
-       buttons with a "Go to Dashboard" button based on $_SESSION['role'].
-       ======================================================================== -->
   <header class="public-navbar">
     <div class="container navbar-inner">
       <!-- Brand Logo -->
@@ -39,7 +22,6 @@
         <span>localnest</span>
       </a>
 
-      <!-- Center Navigation Links (Clicking Homestays or Local Tours filters the grid via JS) -->
       <nav class="nav-links" aria-label="Main Navigation">
         <a href="#featuredSection" class="nav-link active" data-nav-filter="all">Home</a>
         <a href="#featuredSection" class="nav-link" data-nav-filter="Homestay">Homestays</a>
@@ -47,7 +29,6 @@
         <a href="register.html" class="nav-link">Become a Host/Guide</a>
       </nav>
 
-      <!-- Right Authentication Buttons -->
       <div class="nav-actions">
         <a href="login.html" class="btn btn-outline-primary">Login</a>
         <a href="register.html" class="btn btn-primary">Register</a>
@@ -55,11 +36,6 @@
     </div>
   </header>
 
-  <!-- ========================================================================
-       2. HERO SECTION & INTERACTIVE SEARCH BAR
-       Allows visitors to filter the featured listings below by destination
-       keyword, date, and category (Homestay vs. Local tour) using pure JS.
-       ======================================================================== -->
   <main>
     <section class="hero-section">
       <div class="container">
@@ -68,9 +44,8 @@
           Stay with welcoming hosts. Explore with local experts. Find your kind of getaway.
         </p>
 
-        <!-- Search Form Card -->
+
         <form id="homeSearchForm" class="search-bar-card" novalidate>
-          <!-- Destination Field -->
           <div class="search-field">
             <label for="searchDestination">Destination</label>
             <div class="input-with-icon">
@@ -87,7 +62,6 @@
             </div>
           </div>
 
-          <!-- Date Field -->
           <div class="search-field">
             <label for="searchDate">Date</label>
             <div class="input-with-icon">
@@ -108,7 +82,6 @@
             </div>
           </div>
 
-          <!-- Category Dropdown -->
           <div class="search-field">
             <label for="searchCategory">Category</label>
             <div class="input-with-icon">
@@ -126,7 +99,6 @@
             </div>
           </div>
 
-          <!-- Search Submit Button -->
           <button type="submit" class="btn btn-primary search-btn">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
               <circle cx="11" cy="11" r="8"/>
@@ -138,13 +110,6 @@
       </div>
     </section>
 
-    <!-- ======================================================================
-         3. FEATURED HOMESTAYS & TOURS SECTION
-         Displays the 6 cards from the Figma design. JavaScript dynamically
-         filters these cards and opens a booking preview modal on "View / Book".
-         Future PHP Note: Populate these cards from the HOMESTAY and TOUR_PACKAGE
-         database tables where status = 'Approved'.
-         ====================================================================== -->
     <section id="featuredSection" class="featured-section">
       <div class="container">
         <div class="section-header">
@@ -156,10 +121,8 @@
           </div>
         </div>
 
-        <!-- 3x2 Cards Grid -->
         <div id="listingsGrid" class="listings-grid">
 
-          <!-- Card 1: Srimangal Tea Garden Cottage (Homestay) -->
           <article
             class="listing-card"
             data-category="Homestay"
@@ -201,7 +164,6 @@
             </div>
           </article>
 
-          <!-- Card 2: Old Dhaka Heritage & Food Walk (Local tour) -->
           <article
             class="listing-card"
             data-category="Local tour"
@@ -244,7 +206,6 @@
             </div>
           </article>
 
-          <!-- Card 3: Sajek Cloud View Eco Stay (Homestay) -->
           <article
             class="listing-card"
             data-category="Homestay"
@@ -286,7 +247,6 @@
             </div>
           </article>
 
-          <!-- Card 4: Nilgiri & Chimbuk Hill Sunrise Trek (Local tour) -->
           <article
             class="listing-card"
             data-category="Local tour"
@@ -329,7 +289,6 @@
             </div>
           </article>
 
-          <!-- Card 5: Kaptai Lakefront Family Homestay (Homestay) -->
           <article
             class="listing-card"
             data-category="Homestay"
@@ -371,7 +330,6 @@
             </div>
           </article>
 
-          <!-- Card 6: Ratargul Swamp Forest Boat Tour (Local tour) -->
           <article
             class="listing-card"
             data-category="Local tour"
@@ -419,14 +377,9 @@
     </section>
   </main>
 
-  <!-- ========================================================================
-       4. FOOTER
-       Matches the Figma footer layout.
-       ======================================================================== -->
   <footer class="public-footer">
     <div class="container">
       <div class="footer-grid">
-        <!-- Brand Column -->
         <div>
           <a href="index.html" class="brand-logo">
             <span class="brand-logo-icon">
@@ -441,7 +394,6 @@
           <p class="footer-copy">&copy; 2026 Localnest. All rights reserved.</p>
         </div>
 
-        <!-- Explore Column -->
         <div>
           <h4 class="footer-col-title">Explore</h4>
           <ul class="footer-links">
@@ -451,7 +403,6 @@
           </ul>
         </div>
 
-        <!-- Community & Support Column -->
         <div>
           <h4 class="footer-col-title">Community &amp; support</h4>
           <ul class="footer-links">
@@ -464,7 +415,6 @@
     </div>
   </footer>
 
-  <!-- Homepage Vanilla JavaScript File -->
   <script src="js/index.js"></script>
 </body>
 </html>

@@ -1,17 +1,3 @@
-/**
- * ============================================================================
- * HOST DASHBOARD JAVASCRIPT (js/host-dashboard.js)
- * Used by: host-dashboard.html
- * Description:
- * Simple client-side interactivity for:
- *   1. Dynamic Seasonal Pricing (validates form and adds rule to list)
- *   2. Flexible Booking Management (Instant Booking toggle & Accept/Reject)
- * ============================================================================
- */
-
-/* --------------------------------------------------------------------------
-   1. DYNAMIC SEASONAL PRICING
-   -------------------------------------------------------------------------- */
 const seasonalForm = document.getElementById('seasonalPricingForm');
 const rulesList = document.getElementById('seasonalRulesList');
 
@@ -45,9 +31,6 @@ if (seasonalForm) {
   });
 }
 
-/* --------------------------------------------------------------------------
-   2. FLEXIBLE BOOKING MANAGEMENT (Instant Booking Toggle & Accept/Reject)
-   -------------------------------------------------------------------------- */
 const instantToggle = document.getElementById('instantBookingToggle');
 const instantStateText = document.getElementById('instantBookingStateText');
 
@@ -58,7 +41,7 @@ if (instantToggle) {
   });
 }
 
-// Accept buttons
+
 const acceptButtons = document.querySelectorAll('.btn-host-accept');
 for (let i = 0; i < acceptButtons.length; i++) {
   acceptButtons[i].addEventListener('click', function () {
@@ -68,7 +51,6 @@ for (let i = 0; i < acceptButtons.length; i++) {
   });
 }
 
-// Reject buttons
 const rejectButtons = document.querySelectorAll('.btn-host-reject');
 for (let i = 0; i < rejectButtons.length; i++) {
   rejectButtons[i].addEventListener('click', function () {

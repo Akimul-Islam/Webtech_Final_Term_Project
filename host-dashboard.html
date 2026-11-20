@@ -1,21 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!--
-    ==========================================================================
-    PAGE 6: HOMESTAY HOST DASHBOARD (host-dashboard.html)
-    Project: Local Nest - Integrated Homestay & Local Experience Booking Platform
-    Course: CSC 3215: Web Technologies (AIUB)
-    Description:
-    Implements the 3 core Host (Homestay Owner) features from the proposal:
-      4. Dynamic Seasonal Pricing (Configure weekend, holiday, and custom date
-         rates per listing).
-      5. Flexible Booking Management (Toggle Instant Booking on/off and
-         Accept or Reject negotiated booking requests).
-      6. Earnings and Booking Analytics (Monthly KPI cards and income summary
-         table with 10% platform commission calculation).
-    ==========================================================================
-  -->
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Homestay Host Dashboard — Localnest</title>
@@ -25,9 +11,7 @@
 <body data-page="host-dashboard">
 
   <div class="app-shell">
-    <!-- ======================================================================
-         1. LEFT SIDEBAR NAVIGATION
-         ====================================================================== -->
+
     <aside class="sidebar">
       <div class="sidebar-brand">
         <a href="index.html" class="brand-logo">
@@ -71,11 +55,8 @@
       </div>
     </aside>
 
-    <!-- ======================================================================
-         2. MAIN CONTENT AREA
-         ====================================================================== -->
     <div class="main-wrapper">
-      <!-- Top Header Bar -->
+   
       <header class="topbar">
         <div class="topbar-title">Dashboard</div>
         <div class="topbar-user">
@@ -93,10 +74,6 @@
           </p>
         </div>
 
-        <!-- ==================================================================
-             FEATURE 6: EARNINGS & BOOKING ANALYTICS
-             Automatically updates when booking requests below are accepted!
-             ================================================================== -->
         <section aria-labelledby="analyticsHeading" class="analytics-section">
           <div class="analytics-header">
             <h2 id="analyticsHeading" class="card-title">
@@ -104,8 +81,6 @@
             </h2>
             <span class="card-meta-right">As of October 23, 2026 &middot; BDT (&#2547;)</span>
           </div>
-
-          <!-- 3 KPI Stat Cards -->
           <div class="grid-3-kpi">
             <div class="kpi-card">
               <div class="kpi-label">Confirmed Bookings This Month</div>
@@ -126,7 +101,6 @@
             </div>
           </div>
 
-          <!-- Monthly Income Summary Table Card -->
           <div class="card income-summary-card">
             <h3 class="income-summary-title">
               Monthly income summary
@@ -173,14 +147,8 @@
           </p>
         </section>
 
-        <!-- ==================================================================
-             BOTTOM TWO-COLUMN GRID:
-             LEFT: FEATURE 4 — DYNAMIC SEASONAL PRICING
-             RIGHT: FEATURE 5 — FLEXIBLE BOOKING MANAGEMENT
-             ================================================================== -->
         <div class="grid-2-col">
 
-          <!-- FEATURE 4: DYNAMIC SEASONAL PRICING -->
           <section id="seasonalPricingCard" class="card" aria-labelledby="seasonalPricingHeading">
             <div class="card-header">
               <div>
@@ -259,7 +227,6 @@
               </button>
             </form>
 
-            <!-- Active Pricing Rules List -->
             <div class="rules-divider">
               <div class="section-subrow-tight">
                 <span class="subrow-title">Active pricing rules</span>
@@ -295,7 +262,6 @@
             </div>
           </section>
 
-          <!-- FEATURE 5: FLEXIBLE BOOKING MANAGEMENT -->
           <section id="bookingManagementCard" class="card" aria-labelledby="bookingManagementHeading">
             <div class="card-header">
               <div>
@@ -304,7 +270,6 @@
               </div>
             </div>
 
-            <!-- Instant Booking Toggle Switch -->
             <div class="instant-booking-bar">
               <div>
                 <div class="subrow-title">Allow Instant Booking</div>
@@ -323,13 +288,11 @@
               </div>
             </div>
 
-            <!-- Listing Subheader & Pending Badge -->
             <div class="section-subrow">
               <span class="subrow-title">Srimangal Green Homestay</span>
               <span id="hostPendingBadge" class="badge badge-info">3 pending requests</span>
             </div>
 
-            <!-- Booking Requests Table -->
             <div class="table-responsive">
               <table class="data-table">
                 <thead>
@@ -368,7 +331,6 @@
                     </td>
                   </tr>
 
-                  <!-- Request 2 -->
                   <tr data-request-price="3000">
                     <td>
                       <span class="cell-primary">Nusrat Jahan</span>
@@ -394,7 +356,6 @@
                     </td>
                   </tr>
 
-                  <!-- Request 3 -->
                   <tr data-request-price="2400">
                     <td>
                       <span class="cell-primary">Farhan Sadik</span>

@@ -1,11 +1,3 @@
-/* ==========================================================================
-   HOST DASHBOARD STYLESHEET (css/host-dashboard.css)
-   Used by: host-dashboard.html
-   Description: Pure CSS styles for the Homestay Host Dashboard, including
-   KPI stat cards, Monthly Income Summary table, Dynamic Seasonal Pricing,
-   and Flexible Booking Management.
-   ========================================================================== */
-
 :root {
   --primary: #2563eb;
   --primary-hover: #1d4ed8;
@@ -60,7 +52,6 @@ button, input, select {
   color: inherit;
 }
 
-/* Brand Logo & Shell */
 .brand-logo {
   display: inline-flex;
   align-items: center;
@@ -213,7 +204,6 @@ button, input, select {
   color: var(--text-muted);
 }
 
-/* Badges & Buttons */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -296,7 +286,6 @@ button, input, select {
   gap: 6px;
 }
 
-/* KPI Stat Cards */
 .grid-3-kpi {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -334,7 +323,6 @@ button, input, select {
   color: var(--text-muted);
 }
 
-/* Cards, Forms & Tables */
 .grid-2-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -456,7 +444,6 @@ button, input, select {
   text-align: right;
 }
 
-/* Seasonal Rules & Instant Booking Toggle */
 .seasonal-rule-item {
   display: flex;
   align-items: center;
